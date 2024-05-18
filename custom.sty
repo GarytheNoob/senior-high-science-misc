@@ -9,9 +9,23 @@
 
 \theoremstyle{definition}
 \newtheorem{rawdef}{定义}
-\newtheorem{rawexp}{例}  [section]
+\newtheorem{rawexp}{例}  [chapter]
 
 \renewcommand\thefootnote{(\arabic{footnote})}
+
+% Counter for exercises
+\newcounter{exercise}[section]
+\renewcommand{\theexercise}{\thesection.\arabic{exercise}}
+
+% Define the Exercise environment
+\newenvironment{exercise}{%
+    \refstepcounter{exercise}% Increment the counter
+    \par\noindent\textbf{练习~\theexercise}%
+}{%
+    \par%
+}
+
+
 
 \newenvironment{rawsol}{%
     \par\noindent\textbf{解：}%
@@ -29,3 +43,5 @@
 \newcommand{\ee}{{\mathrm e}}
 
 \DeclareMathOperator{\card}{card}
+
+\newcommand{\overll}[1]{\overline{\overline{{#1}}}}

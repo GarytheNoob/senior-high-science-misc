@@ -44,5 +44,115 @@
 此外，我们还可以用这种方式将无理数集表示为$\mathbb{R}\setminus\mathbb{Q}$，将纯
 虚数集表示为$\mathbb{C}\setminus\mathbb{R}$。
 
+\section{集合的基数}
 
+我们知道，集合具有\textbf{确定性}。这一点说明，\textbf{每一个集合都有确定的元素
+个数}。我们把集合的元素个数叫作这个集合的\textbf{基数}\index{基数}，也叫
+\textbf{势}\index{势}。对于有限集$A$，它的基数是一个自然数，记作$\card{A}
+$\footnote{这里给出的是课本上的表示法，一个集合的基数的写法还有$\abs{A}$、$\# A$、
+$\bar{A}$、$\overll{A}$等。}。我们直观地将集合的基数理解为集合的大小。
 
+考虑集合$\left\{ 1,2,3 \right\} $和集合$\left\{ 2,3,4 \right\} $，它们不相等，但
+是有相同的基数。对于这个例子，这个结论是显然的。但是，究竟怎么一般地比较两个集合
+的元素个数？满足了什么条件，我们才能说两个集合具有相同的基数？
+
+根据一年级教科书中的相关内容\cite{pep_math_1A}，我们尝试将比较的两个集合中的元素
+\textbf{一一对应}。如果两个集合的元素可以完成这种“一一对应”，并且最后都恰好用完
+了两个集合中的元素，那么我们就说，两个集合拥有相同的基数，又称\textbf{等势}；如
+果在其中一个集合的所有元素都用完的时候，另一个集合中还存在没有被“配对”的元素，那
+么我们说，前者的基数小于后者。
+
+\begin{rawexp}
+    比较集合$A=\mathbb{Z}\cap \left[ -1,3 \right]$与集合$B=\mathbb{Z}\cap \left( 
+    -1,3\right)$的大小。
+\end{rawexp}
+
+\begin{rawsol}
+    对于$a \in A$，定义它在集合$B$中可能存在的“对应”$b \in B$满足$b = a$。由此我
+    们得到$A$中所有在$B$中有“对应”的元素组成的集合$C$：
+    \[
+        C = \left\{a\,|\,a\in A,\ \exists b\in B,\ b=a\right\} = A\cap B = 
+        \left\{ 0,1,2 \right\} .
+    \]
+
+    我们发现，$B\setminus C=\varnothing$，但$A\setminus C\neq\varnothing$。也就
+    是说，在尝试建立一一对应关系之后，$B$中元素用完但$A$中元素有剩。所以我们说
+    \[
+        \card{A} > \card{B}.
+    \]
+\end{rawsol}
+
+在上述的解法中，我们将“一一对应”定义为$b=a$。然而，并非要将这种“对应”定义为相等。
+
+\begin{rawexp}[2024年台州二模T19节选]
+    设$A,B$是两个非空集合，如果对于集合$A$中的任意一个元素$x$，按照某种确定的对
+    应关系$f$，在集合$B$中都有唯一确定的元素$y$和它对应，并且不同的$x$对应不同的
+    $y$；同时$B$中的每一个元素$y$都有一个$A$中的元素$x$与它对应，则称$f:
+    A\rightarrow B$为从集合$A$到集合$B$的一一对应，并称集合$A$与$B$等势，记作
+    $\overll{A}=\overll{B}$。若集合$A$与$B$之间不存在一一对应关系，则称$A$与$B$
+    不等势，记作$\overll{A}\neq\overll{B}$。
+
+    \vspace{1ex}
+    求证：$\overll{\mathbb{N}^\ast} \neq \overll{\left\{ x\,|\, x\subseteq N^\ast 
+    \right\}} $。
+\end{rawexp}
+
+\begin{proof}
+    设集合$M=\left\{ x\,|\, x\subseteq N^\ast \right\}$，它是所有正整数集的子集
+    构成的集合。
+
+    定义对应关系$f:M\rightarrow \mathbb{N}^\ast$如下：
+    \[
+        f(A) = \overll{A},\quad A\subseteq \mathbb{N}^\ast.
+    \]
+    现在我们只需同时证明：
+    \begin{enumerate}[label=(\roman*)]
+        \item 正整数集的子集的基数完全覆盖了所有正整数。即
+            \[
+                \forall p\in \mathbb{N}^\ast,\ \exists A\subseteq \mathbb{N}
+                ^\ast,\ \overll{A} = p.
+            \] \label{tmp:set_enum_1}
+
+            这句话指出，对$M$中每一元素作用映射$f$后的结果至少已经“用去”了正整数
+            集中的所有元素。
+
+        \item 以下两句的\emph{其中之一}：
+            \begin{enumerate}
+                \item 存在至少一对正整数集的子集，它们的基数相同。\label{tmp:set_enum_2a}
+                    
+                    这句话指出有存在复数个$M$中元素，它们被$f$映射的结果相同，而
+                    这个结果已经被第一个元素“用去”了，即其余的几个元素是“多出来”
+                    的。
+
+                \item 存在基数不为正整数的正整数集的子集。\label{tmp:set_enum_2b}
+
+                    这句话指出存在$M$中元素，它被$f$映射的结果不在$\mathbb{N}
+                    ^\ast$中，即它是“多出来”的那个。
+            \end{enumerate}
+    \end{enumerate}
+    \begin{proof}[对~\ref{tmp:set_enum_1}~的证明]
+        $\forall p \in \mathbb{N}^\ast$，令$A = \left\{ x\in\mathbb{N}^\ast\,
+        |x \le p\right\} $，则有$\overll{A}=p$。
+    \end{proof}
+    而~\ref{tmp:set_enum_2a}~和~\ref{tmp:set_enum_2b}~都很容易证明。我们可以轻易
+    举出基数相同的子集对，如$\left\{ 1,2 \right\}$和$\left\{ 3,4 \right\}$。对于
+    ~\ref{tmp:set_enum_2b}，我们只需举出空集$\overll{\varnothing} \notin 
+    \mathbb{N}^\ast$。
+
+    这就证明了，我们定义的$f$不是一个一一对应。所以根据题目描述，$\overll{M}
+    \neq\overll{\mathbb{N}^\ast}$
+\end{proof}
+
+\begin{exercise}\label{exe:same_card_subset}
+    证明：
+    \begin{enumerate}
+        \item 正整数集$\mathbb{N}^\ast$和自然数集$\mathbb{N}$等势。
+
+        \item 整数集$\mathbb{Z}$和偶数集$E = \left\{ 2k\,|\,k\in \mathbb{Z} \right\}
+            $等势。
+
+        \item 正整数集$\mathbb{N}^\ast$和$\mathbb{Z}$等势。
+    \end{enumerate}
+\end{exercise}
+
+练习~\ref{exe:same_card_subset}~的结果表明，一个集合与其真子集有可能等势。

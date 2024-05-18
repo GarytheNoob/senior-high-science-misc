@@ -2,11 +2,14 @@
 \newcommand{\sol}{\textbf{解：}}
 \newcommand{\blank}{\underline{\hbox to 15mm{}}}
 
-\newtheorem{rawdef}{定义}
+\theoremstyle{plain}
 \newtheorem{rawlem}{引理}[section]
-\newtheorem{rawexp}{例}  [section]
 \newtheorem{rawthm}{定理}[section]
 \newtheorem{rawprp}{命题}[section]
+
+\theoremstyle{definition}
+\newtheorem{rawdef}{定义}
+\newtheorem{rawexp}{例}  [section]
 
 \renewcommand\thefootnote{(\arabic{footnote})}
 

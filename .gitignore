@@ -9,6 +9,9 @@
 *.fdb_latexmk
 *.lot
 *.out
+*.idx
+*.ilg
+*.ind
 *.toc
 *.pdf
 run.xml

@@ -6,10 +6,15 @@
 
 ## 本地编译
 
-使用`xelatex`编译
+使用 XeLaTeX 和 BibTeX 编译
 
 ```bash
-xelatex main.tex
+make
+```
+
+清理不要的文件
+```bash
+make clean
 ```
 
 ## License

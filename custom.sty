@@ -10,21 +10,9 @@
 \theoremstyle{definition}
 \newtheorem{rawdef}{定义}
 \newtheorem{rawexp}{例}  [chapter]
+\newtheorem{exercise}{练习}[section]
 
 \renewcommand\thefootnote{(\arabic{footnote})}
-
-% Counter for exercises
-\newcounter{exercise}[section]
-\renewcommand{\theexercise}{\thesection.\arabic{exercise}}
-
-% Define the Exercise environment
-\newenvironment{exercise}{%
-    \refstepcounter{exercise}% Increment the counter
-    \par\noindent\textbf{练习~\theexercise}%
-}{%
-    \par%
-}
-
 
 
 \newenvironment{rawsol}{%

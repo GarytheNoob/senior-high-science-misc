@@ -1,7 +1,8 @@
-\chapter{集合论} \label{chap:set}
+\chapter{集合} \label{chap:set}
 
 集合是高中数学接触到的第一个概念，也是数学领域最基础的数学概念之一。在本章中，我
-们将拓展一些高中内容。
+们将拓展一些高中内容。本章的后半部分还使用大量篇幅介绍了集合基数相关知识，其与高
+中内容联系有限，仅供读者拓展知识。
 
 \section{超集、相对补集}
 
@@ -96,7 +97,7 @@ B^\complement$——刚好就可以得到图~\ref{fig:venn_notAorB}~所示区域
     \end{minipage}
 \end{figure}
 
-\section{集合的基数}
+\section[集合的基数]{集合的基数\footnote{本节内容与高中关联有限。}}
 
 我们知道，集合具有\textbf{确定性}。这一点说明，\textbf{每一个集合都有确定的元素
 个数}。我们把集合的元素个数叫作这个集合的\textbf{基数}\index{基数}，也叫
@@ -116,6 +117,28 @@ $\overline{A}$、$\overll{A}$等。}。我们直观地将集合的基数理解�
 
 等势是一种等价关系，具有传递性。也就是说，与相同集合$A$等势的两个集合$B$和$C$等
 势。
+
+我们在学习子集\index{子集}的时候，也许知道：对于一个$n$元有限集$A$（基数为$n$的
+有限集），其子集的个数为$2^n$。这很容易理解，在构建一个子集的时候，对于$A$中的每
+一个元素$a_i$，都有\emph{放入}与\emph{不放入}两种选择。而每一个元素的选择互相独
+立。所以我们便得出了$2^n$的结果。
+
+\begin{rawdef}[幂集]
+    一个集合的幂集是由该集合全部子集为元素构成的集合。集合$S$的幂集记作
+    $\mathcal{P}(S)$，即
+    \[
+        \mathcal{P}(S)\coloneqq \left\{ U \,|\, U \subseteq S \right\}.
+    \]
+\end{rawdef}
+
+有了幂集的概念，我们就可以方便的把子集个数的定理表示为：
+\begin{rawthm}
+    对于一个有限集$A$，有
+    \[
+        \card \left( \mathcal{P}(A) \right) = 2^{\card A}.
+    \]
+\end{rawthm}
+
 
 \subsection{有限集的基数}
 
@@ -251,11 +274,14 @@ $是第$i+1$个质数）。这下，每个新来的客人都有房间住了。
 是同时报出一个数字。这样以来，同时报出的两个数字间就形成了一种对应关系。比如，下
 面的甲乙报数的例子体现了正整数集和完全平方数集等势：
 
-\begin{itemize}
-    \item[\textbf{甲}：] $1,\quad 2,\quad 3,\quad 4\,\ , \cdots,\quad n\,\ , \cdots$
-
-    \item[\textbf{乙}：] $1,\quad 4,\quad 9,\quad 16, \cdots,\quad n^2, \cdots$
-\end{itemize}
+\vspace{2ex}
+\begin{minipage}{\textwidth}
+    \begin{itemize}
+        \item[\textbf{甲}：] $1,\quad 2,\quad 3,\quad 4\,\ , \cdots,\quad n\,\ , \cdots$
+        \item[\textbf{乙}：] $1,\quad 4,\quad 9,\quad 16, \cdots,\quad n^2, \cdots$
+    \end{itemize}
+\end{minipage}
+\vspace{2ex}
 
 那理论上，我们只需要尝试在一个集合中寻找一种能“数清”这个集合的方法，就可以知道这
 个集合是否是一个可数集。比如，我们可以数清整数集$\mathbb{Z}$：从0开始，再数每个
@@ -273,7 +299,7 @@ $\mathbb{Z}$就被我们数成了：
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{fig/pairing_natural.png}
+    \includegraphics[width=0.4\linewidth]{fig/pairing_natural.png}
     \caption{一种遍历集合$P$中元素的路径}\label{fig:pairing_natural}
 \end{figure}
 
@@ -316,7 +342,7 @@ $\mathbb{Z}$就被我们数成了：
 
 既然这个闭区间是可数的，那我们就将其按照规律列出：
 
-\begin{table}[H]
+\begin{table}[h]
     \centering
     \caption{假设的一种对应关系}\label{tbl:cantor_diagonal}
     \begin{tabular}{r|l}
@@ -346,7 +372,7 @@ $\left( 0,1 \right) $中的实数。由于这些实数很有可能是无理数�
 所对应的实数小数点后的第$n$位，如表~\ref{tbl:cantor_diagonal_maker0}~所示。其中
 $r_{0}$所用到的数字用粗体指出。
 
-\begin{table}[H]
+\begin{table}[h]
     \centering
     \caption{$r_{0}$的构造过程}\label{tbl:cantor_diagonal_maker0}
     \begin{tabular}{r|l}
@@ -398,5 +424,11 @@ $\left( 0,1 \right) $与$\mathbb{N}$不等势，且前者的势大于后者。�
 \begin{rawthm}
     $\mathbb{R}$的势大于$\mathbb{N}$，它是一个不可数集。
 \end{rawthm}
+
+现在你对于证明集合不等势有了一些认识，请你尝试证明以下命题。
+
+\begin{rawprp}[2024台州二模19题改]
+    有理数集$\mathbb{N}$与其幂集$\mathcal{P}(\mathbb{N})$不等势。    
+\end{rawprp}
 
 

@@ -9,9 +9,22 @@
 
 \theoremstyle{definition}
 \newtheorem{rawdef}{定义}
-\newtheorem{rawexp}{例}  [section]
+\newtheorem{rawexp}{例}  [chapter]
+% \newtheorem{exercise}{练习}[section]
+
+\newenvironment{exercises}{
+    \begin{center}
+        \Large \textbf{练习}
+    \end{center}
+    \begin{multicols}{2}
+    \begin{enumerate}
+}
+{\end{enumerate}
+\end{multicols}}
 
 \renewcommand\thefootnote{(\arabic{footnote})}
+
+
 
 \newenvironment{rawsol}{%
     \par\noindent\textbf{解：}%
@@ -29,3 +42,5 @@
 \newcommand{\ee}{{\mathrm e}}
 
 \DeclareMathOperator{\card}{card}
+
+\newcommand{\overll}[1]{\overline{\overline{{#1}}}}

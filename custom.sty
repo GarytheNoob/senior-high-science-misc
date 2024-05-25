@@ -10,9 +10,20 @@
 \theoremstyle{definition}
 \newtheorem{rawdef}{定义}
 \newtheorem{rawexp}{例}  [chapter]
-\newtheorem{exercise}{练习}[section]
+% \newtheorem{exercise}{练习}[section]
+
+\newenvironment{exercises}{
+    \begin{center}
+        \Large \textbf{练习}
+    \end{center}
+    \begin{multicols}{2}
+    \begin{enumerate}
+}
+{\end{enumerate}
+\end{multicols}}
 
 \renewcommand\thefootnote{(\arabic{footnote})}
+
 
 
 \newenvironment{rawsol}{%

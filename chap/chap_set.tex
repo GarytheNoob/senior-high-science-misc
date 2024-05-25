@@ -10,7 +10,7 @@
 \textbf{交集}、\textbf{并集}和\textbf{补集}。
 
 我们知道，关系是相互的——小王是老王的儿子，老王是小王的父亲；那放之于集合的范畴，
-我们定义了和子集相对的超集：
+我们定义了和子集相对的概念——超集：
 
 \begin{rawdef}[超集]\index{超集}
     集合$A$的\textbf{超集}$B$是一个集合，它含有$A$中的所有元素。记作$B \supseteq 
@@ -41,8 +41,60 @@
     定义域是$\mathbb{R}\setminus \left\{ -1,1 \right\}$.
 \end{rawsol}
 
-此外，我们还可以用这种方式将无理数集表示为$\mathbb{R}\setminus\mathbb{Q}$，将纯
-虚数集表示为$\mathbb{C}\setminus\mathbb{R}$。
+此外，我们还可以用这种方式将无理数集表示为$\mathbb{R}\setminus\mathbb{Q}$，将虚
+数集表示为$\mathbb{C}\setminus\mathbb{R}$。
+
+我们高中所学习的$\complement_U A$的写法也可以写作$A^\complement$。在第二种情况下，
+全集$U$需依照上下文确定。
+
+有关补集的一个重要定律是所谓的反演律，它揭示了交集、并集、补集三者间的某种关系。
+
+\begin{rawthm}[反演律]
+    在全集中，若干个集合并集的补集是每一个集合补集的交集；若干个集合交集的补集是
+    每一个集合补集的并集。
+
+    对于两个集合的情况，在全集中有
+    \begin{align*}
+        \left( A \cup B \right)^\complement=A^\complement \cap B^\complement,
+        \tag{$\ast$}\label{eq:de_morgan_cup}\\
+        \left( A \cap B \right)^\complement=A^\complement \cup B^\complement.
+    \end{align*}
+\end{rawthm}
+
+图~\ref{fig:venn_notAorB},~\ref{fig:venn_notA},~\ref{fig:venn_notB}~给出了%
+~(\ref{eq:de_morgan_cup})~式涉及的几个集合的韦恩图。可以看得出来，当我们取图%
+~\ref{fig:venn_notA}~和图~\ref{fig:venn_notB}~的公共部分——即$A^\complement \cap 
+B^\complement$——刚好就可以得到图~\ref{fig:venn_notAorB}~所示区域。
+
+\begin{figure}[H]
+    \centering
+    \begin{venndiagram2sets}[radius=0.8cm]
+        \fillNotAorB
+    \end{venndiagram2sets}
+    \caption{$\left( A\cup B \right)^\complement $的韦恩图}
+    \label{fig:venn_notAorB}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{4cm}
+        \centering
+        \begin{venndiagram2sets}[radius=0.8cm]
+            \fillNotA
+        \end{venndiagram2sets}
+        \caption{$A^\complement$的韦恩图}
+        \label{fig:venn_notA}
+    \end{minipage}
+    \quad
+    \begin{minipage}{4cm}
+        \centering
+        \begin{venndiagram2sets}[radius=0.8cm]
+            \fillNotB
+        \end{venndiagram2sets}
+        \caption{$B^\complement $的韦恩图}
+        \label{fig:venn_notB}
+    \end{minipage}
+\end{figure}
 
 \section{集合的基数}
 
@@ -346,3 +398,5 @@ $\left( 0,1 \right) $与$\mathbb{N}$不等势，且前者的势大于后者。�
 \begin{rawthm}
     $\mathbb{R}$的势大于$\mathbb{N}$，它是一个不可数集。
 \end{rawthm}
+
+

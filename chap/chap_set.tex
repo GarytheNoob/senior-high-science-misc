@@ -14,7 +14,7 @@
 我们定义了和子集相对的概念——超集：
 
 \begin{rawdef}[超集]\index{超集}
-    集合$A$的\textbf{超集}$B$是一个集合，它含有$A$中的所有元素。记作$B \supseteq 
+    集合$A$的超集$B$是一个集合，它含有$A$中的所有元素。记作$B \supseteq 
     A$.
 \end{rawdef}
 
@@ -50,7 +50,7 @@
 
 有关补集的一个重要定律是所谓的反演律，它揭示了交集、并集、补集三者间的某种关系。
 
-\begin{rawthm}[反演律]
+\begin{rawthm}[反演律]\label{thm:de-morgan-set}
     在全集中，若干个集合并集的补集是每一个集合补集的交集；若干个集合交集的补集是
     每一个集合补集的并集。
 
@@ -97,13 +97,89 @@ B^\complement$——刚好就可以得到图~\ref{fig:venn_notAorB}~所示区域
     \end{minipage}
 \end{figure}
 
+根据定理~\ref{thm:de-morgan-set}，我们可以推导出：任意集合之间的恒成立式，如果其
+在形式上只由代表集合的字母及以下符号组成
+\[
+    \subseteq,\ \supseteq,\ \cup,\ \cap,\ \complement\,\text{（补集）},
+\]
+那么在形式上将$\subseteq$和$\supseteq$互换、$\cup$和$\cap$互换，仍能得到恒成立式。
+也就是说：\emph{集合的恒成立式总是成对出现}。
+
+\section{笛卡儿积}
+
+一副扑克牌，去掉大小王之后有52张。它们包括黑桃$\spadesuit$、红心$\heartsuit$、
+草花$\clubsuit$和方块$\diamondsuit$四个花色，每个花色有A--K\footnote{A,2,3,4,5,%
+6,7,8,9,10,J,Q,K}共13张。
+
+如何用集合方便地表述一副去掉大小王的扑克牌呢？我们自然可以使用列举法：
+\begin{align*}
+    \{\, &\spadesuit \ace,\ \spadesuit 2,\ \spadesuit 3,\cdots,\ \spadesuit \queen,\ 
+    \spadesuit \king, \\
+       &\heartsuit \ace,\ \heartsuit 2,\ \heartsuit 3,\cdots,\ \heartsuit \queen,\ 
+    \heartsuit \king, \\
+       &\clubsuit \ace,\ \clubsuit 2,\ \clubsuit 3,\cdots,\ \clubsuit \queen,\ 
+    \clubsuit \king, \\
+       &\diamondsuit \ace,\ \diamondsuit 2,\ \diamondsuit 3,\cdots,\ \diamondsuit \queen,\ 
+    \diamondsuit \king\, \}.
+\end{align*}
+列举法的缺点是显而易见的：太过冗长，并且不宜直观体现这一集合的性质。我们可以使用
+另一种方式。我们先列出花色集合和点数集合：
+\begin{align*}
+    S &= \left\{ \spadesuit,\heartsuit,\clubsuit,\diamondsuit \right\},\\
+    R &= \left\{ \ace,2,3,4,5,6,7,8,9,10,\jack,\queen,\king \right\}.
+\end{align*}
+这52张牌的一张可以以这种方式确定：先从$S$中选一个花色，比如$\clubsuit$；再从$R$
+中选一个花色，比如4。这样我们便确定了$\clubsuit 4$这张牌，在这里我们记作$\left( 
+\clubsuit, 4\right) $。这是一个\textbf{有序对}\index{有序对}。
+
+这样一来，52张牌组成的集合就可以表示为：
+\[
+    D = \left\{ \left( s,r \right) \,|\, s\in S,\, r\in R \right\}.
+\]
+
+由此，我们做出如下定义。
+
+\begin{rawdef}[笛卡儿积]\index{笛卡儿积}
+    两个集合$A$和$B$的笛卡儿积，又称直积\index{直积|see{笛卡儿积}}，是所有满足的
+    有序对组成的集合，有序对的第一个对象是$A$中元素，第二个对象是$B$中元素，记作
+    \[
+        A \times B = \left\{ \left( a,b \right) \,|\, a\in A,\, b\in B \right\}.
+    \]
+\end{rawdef}
+
+这样一来，上面扑克牌中的$D$也可以表示为$S\times R$。
+
+笛卡儿积很适合用来表示“所有可能的结果”，如例~\ref{exp:dice}。
+
+\begin{rawexp}\label{exp:dice}
+    投掷一个六面体骰子两次，用集合表达所有可能的结果。
+\end{rawexp}
+
+\begin{rawsol}
+    容易知道投掷一次的结果
+    \[
+        S = \left\{ 1,2,3,4,5,6 \right\}.
+    \]
+
+    对于投掷两次的情形，所有的结果为
+    \begin{align*}
+        R &= S \times S\\
+          &= \left\{ \left( s_{1},s_{2} \right) \,|\, s_{1}\in S,\,s_{2}\in S \right\} .
+    \end{align*}
+\end{rawsol}
+
+按照这种方法，我们可以将二维坐标平面上的点的集合记作$\mathbb{R}\times\mathbb{R}$，
+甚至$\mathbb{R}^2$，虽然后者多见用于表达向量空间。与后者类似，三维坐标空间中的点
+也被表示为$\mathbb{R}^3$。
+
 \section[集合的基数]{集合的基数\footnote{本节内容与高中关联有限。}}
 
 我们知道，集合具有\textbf{确定性}。这一点说明，\textbf{每一个集合都有确定的元素
 个数}。我们把集合的元素个数叫作这个集合的\textbf{基数}\index{基数}，也叫
-\textbf{势}\index{势}。对于有限集$A$，它的基数是一个自然数，记作$\card{A}
-$\footnote{这里给出的是课本上的表示法，一个集合的基数的写法还有$\abs{A}$、$\# A$、
-$\overline{A}$、$\overll{A}$等。}。我们直观地将集合的基数理解为集合的大小。
+\textbf{势}\index{势|see{基数}}。对于有限集$A$，它的基数是一个自然数，记作
+$\card{A}$\footnote{这里给出的是课本上的表示法，一个集合的基数的写法还有$\abs{A}
+$、$\# A$、$\overline{A}$、$\overll{A}$等。}。我们直观地将集合的基数理解为集合的
+大小。
 
 考虑集合$\left\{ 1,2,3 \right\} $和集合$\left\{ 2,3,4 \right\} $，它们不相等，但
 是有相同的基数。对于这个例子，这个结论是显然的。但是，究竟怎么一般地比较两个集合

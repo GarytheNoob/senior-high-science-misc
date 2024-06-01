@@ -231,6 +231,8 @@ $\eqcolon$，表示“定义为”。
 都是数集上的函数。在这一节中，我们将介绍抽象化的“映射”概念。在数学中，“映射”和
 “函数”表达的实质是相同的。
 
+\subsection{定义域、陪域和值域}
+
 \begin{rawdef}[映射]\index{映射}
     设$A$和$B$是两个非空集合，若对$A$中任意的元素$x$，依照某总确定的规律或法则
     $f$，总有$B$中唯一确定的元素$y$与之对应，则称此对应规律或法则$f$为一个从$A$
@@ -238,15 +240,196 @@ $\eqcolon$，表示“定义为”。
     \[
         f: A \to B.
     \]
+    如果$f$将$A$中元素$x$映射到$B$中元素$y$，则记作$f: A\to B: x\mapsto y$。
+
+    用形式语言表述，一个对应关系$f$是$A$到$B$的映射的一个充要条件是
+    \[
+        \forall x \in A, \exists y \in B, f(x)=y.
+    \]
 \end{rawdef}
 
 我们称$A$为映射$f: A \to B$的\textbf{定义域}\index{定义域}；称$B$为其\textbf{陪
 域}\index{陪域}，又叫\textbf{到达域}\index{到达域|see{陪域}}；称$A$中所有元素被
 $f$作用的结果组成的集合$\left\{ f(x) \,|\, x\in A \right\} $叫作\textbf{值域}
-\index{值域}。
+\index{值域}。有时候也把$\left\{ f(x) \,|\, x\in A \right\} $简记作$f(A)$。
 
-请注意，陪域和值域是不同概念。陪域总是值域的超集。
+请注意，陪域和值域是不同概念。陪域总是值域的超集。记号$f: A \to B$只是说明了$f$
+对于$A$中元素的作用结果总是$B$中的元素，并没有说明所有$B$中的元素都会被使用。
 
+% 比如，我们用
+% \[
+%     f: \left\{ \text{Alice},\text{Bob},\text{Cate} \right\} \to \left\{ 
+%     \text{dog},\text{ice cream},\text{flower} \right\} 
+% \]
+% 来表示人与物两个集合中的“喜爱”这一关系，并规定
+% \begin{align*}
+%     f(\text{Alice}) &= \text{flower},\\
+%     f(\text{Bob}) &= \text{ice cream},\\
+%     f(\text{Cate}) &= \text{flower}.\\
+% \end{align*}
+% 这样一来，映射$f$的值域是$\left\{ \text{flower},\text{ice cream} \right\} $，而
+% 并不是一开始的陪域$\left\{ \text{dog},\text{ice cream},\text{flower} \right\}$。
+
+\subsection{单射、满射和双射}
+
+一个映射的陪域不一定是它的值域。对于那些值域和陪域相等的映射，我们叫它\textbf{满
+射}。
+
+\begin{rawdef}[满射]\index{满射}
+    $f:X\to Y$是满射，当其陪域与值域相等。即对于陪域$Y$中的任意元素$y$，在定义域
+    $X$中存在一个元素$x$使得$f(x)=y$。
+
+    用形式语言表述，$f:X\to Y$是满射的一个充要条件是
+    \[
+        \forall y \in Y, \exists x \in X, f(x)=y.
+    \]
+\end{rawdef}
+
+图~\ref{fig:map_onto}~表达了一个满射。从中我们可以知道，陪域中的每一个元素都是某
+一个定义域中元素的作用结果。在图上的体现是，陪域中的每一个元素都被至少被一个箭头
+指着。所以“满”射指的是一个映射作用的结果“填满了”整个陪域。
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}{12em}
+    \centering
+    \begin{tikzpicture}[scale=.5]
+        \draw[thick] (0,0) circle [x radius=1.5, y radius=3.8]
+            (4,0) circle [x radius=1.5, y radius=3];
+        \node at (0,-5) {定义域};
+        \node at (4,-5) {陪域};  
+
+        \node (a1) at (0,2.4)   {1};
+        \node (a2) at (0,0.8)   {2};
+        \node (a3) at (0,-0.8)  {3};
+        \node (a4) at (0,-2.4)  {4};
+
+        \node[circle] (b1) at (4,2)  {$a$}; 
+        \node[circle] (b2) at (4,0)  {$b$};
+        \node[circle] (b3) at (4,-2) {$c$};
+
+        \draw[thick,->] (a1.east) -- (b1);
+        \draw[thick,->] (a2.east) -- (b1);
+        \draw[thick,->] (a3.east) -- (b2);
+        \draw[thick,->] (a4.east) -- (b3);
+    \end{tikzpicture}    
+    \caption{一个满射的示意}\label{fig:map_onto}
+\end{minipage}
+\qquad
+\begin{minipage}{12em}
+    \centering
+    \begin{tikzpicture}[scale=.5]
+        \draw[thick] (0,0) circle [x radius=1.5, y radius=3.8]
+            (4,0) circle [x radius=1.5, y radius=4.5];
+        \node at (0,-5.5) {定义域};
+        \node at (4,-5.5) {陪域};  
+
+        \node (a1) at (0,2.4)   {1};
+        \node (a2) at (0,0.8)   {2};
+        \node (a3) at (0,-0.8)  {3};
+        \node (a4) at (0,-2.4)  {4};
+
+        \node[circle] (b1) at (4,4)  {$a$}; 
+        \node[circle] (b2) at (4,2)  {$b$}; 
+        \node[circle] (b3) at (4,0)  {$c$};
+        \node[circle] (b4) at (4,-2) {$d$};
+        \node[circle] (b5) at (4,-4) {$e$};
+
+        \draw[thick,->] (a1.east) -- (b5);
+        \draw[thick,->] (a2.east) -- (b1);
+        \draw[thick,->] (a3.east) -- (b2);
+        \draw[thick,->] (a4.east) -- (b4);
+    \end{tikzpicture}    
+    \caption{一个单射的示意}\label{fig:map_one2one}
+\end{minipage}
+\end{figure}
+
+你会发现，\emph{研究映射时，规定定义域和陪域是很重要的。}在高中学习函数时，我们
+只学到定义域和对应法则是很重要的。但是在研究映射的时候，规定好陪域同样重要，因为
+这涉及到这个映射是否为满射。
+
+比如，考虑两个映射：
+\[
+    \begin{aligned}
+        f: \mathbb{R} &\to \mathbb{R}\\
+        x &\mapsto x^2
+    \end{aligned}
+    \quad \text{和}\quad
+    \begin{aligned}
+        g: \mathbb{R} &\to \left[ 0,+\infty \right)\\
+        x &\mapsto x^2.
+    \end{aligned}
+\]
+它们的定义域和对应法则完全相同——都是把实数$x$映射到$x^2$。然而我们说，$f$不是满
+射，而$g$是满射，因此$f$和$g$是两个不同的映射。
+
+\begin{rawdef}[单射]\index{单射}
+    映射$f: X\to Y$是单射，当它将不同的输入值对应到不同的函数值上。
+
+    用形式语言表述，$f: X\to Y$是单射的一个充要条件是
+    \[
+        \forall x_{1},x_{2} \in X, f(x_{1})=f(x_{2}) \Leftrightarrow x_{1}=x_{2}
+        .
+    \]
+\end{rawdef}
+
+图~\ref{fig:map_one2one}~表达了一个单射。我们可以由此知道：
+\begin{rawthm}\label{thm:monotone_one2one}
+    单调函数都是单射。
+\end{rawthm}
+
+如果有一个映射，它既是单射、又是满射，那么我们称它为\textbf{双射}。
+
+\begin{rawdef}[双射]\index{双射}
+    映射$f:X\to Y$是双射，当它既是满射，又是单射。在这种情况下，对于定义域$X$内
+    每一元素$x$，存在唯一一个$Y$内的元素$y$与之对应；对于陪域$Y$内的每一元素$y$，
+    存在唯一一个$X$内的元素$x$与之对应。记作$f: X\leftrightarrow Y$。
+
+    特殊地，当$Y=X$时，双射函数$f: X\leftrightarrow X$也叫作\textbf{置换}
+    \index{置换|see{双射}}\index{置换}
+
+    用形式语言表述，$f: X\to Y$是双射的一个充要条件是
+    \[
+        \left\{
+        \begin{matrix}
+            \forall y \in Y, \exists x \in X, f(x)=y.\\
+            \forall x_{1},x_{2}\in X, x_{1}\neq x_{2}\Rightarrow f(x_{1})\neq f(x_{2}).
+        \end{matrix}
+        \right.
+    \]
+\end{rawdef}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=.5]
+        \draw[thick] (0,0) circle [x radius=1.5, y radius=3.8]
+            (4,0) circle [x radius=1.5, y radius=3.8];
+        \node at (0,-5.5) {定义域};
+        \node at (4,-5.5) {陪域};  
+
+        \node (a1) at (0,2.4)   {1};
+        \node (a2) at (0,0.8)   {2};
+        \node (a3) at (0,-0.8)  {3};
+        \node (a4) at (0,-2.4)  {4};
+
+        \node[circle] (b1) at (4,2.4)  {$a$}; 
+        \node[circle] (b2) at (4,0.8)  {$b$}; 
+        \node[circle] (b3) at (4,-0.8)  {$c$};
+        \node[circle] (b4) at (4,-2.4) {$d$};
+
+        \draw[thick,->] (a1.east) -- (b3);
+        \draw[thick,->] (a2.east) -- (b1);
+        \draw[thick,->] (a3.east) -- (b2);
+        \draw[thick,->] (a4.east) -- (b4);
+    \end{tikzpicture}    
+    \caption{一个双射的示意}\label{fig:map_biject}
+\end{figure}
+
+图~\ref{fig:map_biject}~表达了一个双射。根据定理~\ref{thm:monotone_one2one}，我
+们可以推出：
+\begin{rawthm}\label{thm:monotone_biject}
+    如果陪域为值域，则单调函数都为双射。
+\end{rawthm}
 
 \section[集合的基数]{集合的基数\footnote{本节内容与高中关联有限。}}
 

@@ -11,7 +11,7 @@ $(MAIN).pdf: $(MAIN).tex $(MAIN).bbl $(MAIN).idx
 	# Compile the LaTeX document
 	xelatex $(MAIN).tex
 	# Run MakeIndex to process index
-	makeindex $(MAIN).idx
+	zhmakeindex -s zh.ist -z pinyin $(MAIN).idx
 	# Compile the LaTeX document again to update references and index
 	xelatex $(MAIN).tex
 	xelatex $(MAIN).tex

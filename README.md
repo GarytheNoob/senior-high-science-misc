@@ -2,11 +2,9 @@
 
 这是一本 *没什么用* 的小书，旨在探讨并扩展一些高中知识。
 
-本书使用 $\rm{\LaTeX}$ 编写。
-
 ## 本地编译
 
-使用 XeLaTeX 和 BibTeX 编译
+使用 XeLaTeX, BibTeX 和 [zhmakeindex](https://github.com/leo-liu/zhmakeindex) 编译。
 
 ```bash
 make

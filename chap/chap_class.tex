@@ -1,3 +1,50 @@
-\chapter{理科中的对象}
+\chapter{高中的对象与类}
 
+本章将会讨论“对象”和“类”的思想在高中理科中的应用。我们知道等式的一个基本原则：
+\textbf{等号两边的内容必须相等}。这句话不仅表明两边的数值相等，还指出两边的东西
+应该是\emph{同类的}——三个苹果不能等于三棵树。
+
+\section{量纲分析}
+
+\subsection{单位、单位的运算}
+
+在物理必修一第四章第4节，我们学习了国际单位制（SI）\index{国际单位制}。SI的七个
+基本单位如表~\ref{tbl:si_units}~所示。
+
+\begin{table}[ht]
+    \centering
+    \caption{SI的基本单位}\label{tbl:si_units}
+    \begin{tabular}{cccc}
+        \toprule
+        物理量 & 物理量符号 & 单位 & 单位符号 \\
+        \midrule
+        长度 & $l$ & 米 & \unit{m} \\
+        质量 & $m$ & 千克 & \unit{kg} \\
+        时间 & $t$ & 秒 & \unit{s} \\
+        电流 & $I$ & 安培 & \unit{A} \\
+        热力学温度 & $T$ & 开尔文 & \unit{K} \\
+        物质的量 & $n$ & 摩尔 & \unit{mol} \\
+        发光强度 & $I$ & 坎德拉 & \unit{cd} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+这七个物理量的现代定义都是基于某个已知的常量。比如，一秒的定义是：
+\begin{quote}
+    一秒是铯-133原子在基态下的两个超精细能级之间跃迁所对应的辐射的%
+    ~\num{9192631770}~个周期的时间。
+\end{quote}
+而一米的定义不仅基于某个常量，还使用到了秒的定义：
+\begin{quote}
+    一米是光在$1/\num{299792458}$秒内在真空中行进的距离。
+\end{quote}
+
+当我们尝试将物理量进行运算的时候，不仅要运算数值，还要运算单位。首先我们只能对相
+同单位的物理量进行加法和减法，因为\textbf{只有相同量可以相加}，计算$3\text{天}
++2\text{元}$是没有意义的。但是我们却可以对不同物理量进行乘法和除法：
+\begin{gather*}
+    \qty{2}{\meter} \times \qty{3}{\meter} = \qty{6}{\meter^2}\\
+    \qty{4}{\meter} \times \qty{2}{\second} = \qty{8}{\meter\cdot\second}\\
+    \frac{\qty{4}{\coulomb}}{\qty{2}{\mole}} = \qty{2}{\coulomb\per\mole}\\
+\end{gather*}
 

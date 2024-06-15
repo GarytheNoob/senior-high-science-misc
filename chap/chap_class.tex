@@ -1,8 +1,10 @@
 \chapter{高中的对象与类}
 
-本章将会讨论“对象”和“类”的思想在高中理科中的应用。我们知道等式的一个基本原则：
-\textbf{等号两边的内容必须相等}。这句话不仅表明两边的数值相等，还指出两边的东西
-应该是\emph{同类的}——三个苹果不能等于三棵树。
+本章将会讨论“对象”和“类”的思想在高中理科中的应用。
+
+我们知道等式的一个基本原则： \textbf{等号两边的内容必须相等}。这句话不仅表明两边
+的数值相等，还指出两边的东西应该是\emph{同类的}——三个苹果不能等于三棵树。在高中
+理科的学习中，这种“同类”的思想经常出现。
 
 \section{量纲分析}
 
@@ -13,7 +15,7 @@
 
 \begin{table}[ht]
     \centering
-    \caption{SI的基本单位}\label{tbl:si_units}
+    \caption{SI的基本单位}\label{tbl:si_units}\index{国际单位制!基本单位}
     \begin{tabular}{cccc}
         \toprule
         物理量 & 物理量符号 & 单位 & 单位符号 \\
@@ -29,22 +31,168 @@
     \end{tabular}
 \end{table}
 
-这七个物理量的现代定义都是基于某个已知的常量。比如，一秒的定义是：
-\begin{quote}
-    一秒是铯-133原子在基态下的两个超精细能级之间跃迁所对应的辐射的%
-    ~\num{9192631770}~个周期的时间。
-\end{quote}
-而一米的定义不仅基于某个常量，还使用到了秒的定义：
-\begin{quote}
-    一米是光在$1/\num{299792458}$秒内在真空中行进的距离。
-\end{quote}
+这七个物理量的现代定义都是基于某个已知的常量。比如，秒的定义用到了铯-133原子跃迁
+所释放辐射的周期；而米的则用到了光速和秒。
+
+一些物理概念是没有单位的，比如物体的个数、角度等等。
 
 当我们尝试将物理量进行运算的时候，不仅要运算数值，还要运算单位。首先我们只能对相
-同单位的物理量进行加法和减法，因为\textbf{只有相同量可以相加}，计算$3\text{天}
+同单位的物理量进行加法和减法，因为\textbf{只有相同量可以相加}，计算$3\text{天}%
 +2\text{元}$是没有意义的。但是我们却可以对不同物理量进行乘法和除法：
 \begin{gather*}
-    \qty{2}{\meter} \times \qty{3}{\meter} = \qty{6}{\meter^2}\\
-    \qty{4}{\meter} \times \qty{2}{\second} = \qty{8}{\meter\cdot\second}\\
-    \frac{\qty{4}{\coulomb}}{\qty{2}{\mole}} = \qty{2}{\coulomb\per\mole}\\
+    \qty{2}{\meter} \times \qty{3}{\meter} = \qty{6}{\meter^2},\\
+    \qty{4}{\meter} \times \qty{2}{\second} = \qty{8}{\meter\cdot\second},\\
+    \frac{\qty{4}{\coulomb}}{\qty{2}{\mole}} = \qty{2}{\coulomb\per\mole}.\\
 \end{gather*}
 
+在基本和导出单位名称之前加上词头，可表达该单位的倍数和分数，一般都是$10$的整数幂。
+比如，词头kilo（千，前缀k）表示$10^3$；nano（纳，前缀n）则表示$10^{-9}$。这样一
+来，\unit{\kilo\mol}表示~\qty{e3}{\mol}；\unit{\nano\A}则表示~\qty{e-9}{\A}。
+
+在形式上，一个带单位的物理量一定程度上相当于“数值和单位的乘积”。比如：
+\begin{gather*}
+    \qty{2000}{s} = \qty{2e3}{s} = \qty{2}{\kilo\s},\\
+    \qty{1800}{\km\cdot\s} = \qty{1.8}{\km\cdot\kilo\s} = \qty{1.8}
+    {\mega\metre\cdot\s}
+.\end{gather*} 
+
+\subsection{导出单位}\index{国际单位制!导出单位}
+
+SI的\textbf{导出单位}是基本单位在乘幂、乘积或相除后产生的单位。每一个导出单位都
+与一个导出物理量相对应。
+
+速度按照定义是长度与时间的比值，因此它的单位也是对应基本单位的商~\unit{\m\per\s}；
+力的单位牛顿\index{牛顿}的定义是“使1千克的\emph{质量}产生1米每二次方秒的\emph{加
+速度}需要的力”，而质量和加速度在SI中对应的单位分别是~\unit{\kg}~和%
+~\unit{\m\per\square\s}，且根据$F=ma$，力是质量和加速度之积，所以力的单位牛顿就
+为~\unit{\kg\m\per\square\s}。
+
+\textbf{一致单位}\index{国际单位制!导出单位!一致单位}是指定义中系数均为1的导出单
+位，也就是定义中不会出现像标准重力或是水的密度之类的常数。牛顿的定义中的系数都是%
+1:“1千克”“1米每二次方秒”，不含其他数值，所以牛顿是一个一致单位。
+
+一些导出单位也有自己的名称和符号，刚才提到的牛顿（\unit{\N}）就是一个例子。此外
+常见的导出单位还有焦耳（\unit{\J}，\unit{\kg\square\m\per\square\s}）、帕斯卡
+（\unit{\Pa}，\unit{\kg\per\m\per\square\s}）、库仑（\unit{\C}，\unit{\s\A}）等。
+\index{焦耳}\index{帕斯卡}\index{库仑}
+
+\begin{rawexp}\label{exp:particle_density_unit}
+    一个物理量表示的是某种粒子在单位体积的个数，它的SI单位是什么？
+\end{rawexp}
+
+\begin{rawsol}
+    已知这种物理量（不妨记为$X$）的定义是
+    \[
+        X \coloneq \frac{\text{一些粒子的个数}}{\text{这些粒子占据了多少单位体积}}
+    ,\]
+    那么$X$应该是“个数/体积”，其单位为“个数”和“体积”单位的比，是~\unit{\m^{-3}}
+    （由于“个数”没有SI单位）。
+\end{rawsol}
+
+\subsection{量纲}
+
+我们知道，在物理学中，各种物理量有着不同的单位，这些单位之间却有一定的联系。通过合理地规定
+一些基本单位（基本单位），可以将其他所有单位（导出单位）表示为这些基本单位的乘积，
+从而统一各个物理量之间的关系。例如，在国际单位制中，功的单位是焦耳
+（\si{\joule}），可以表示为“千克·平方米每平方秒”
+（\si{\kilogram\meter\squared\per\second\squared}）。
+
+然而，仅仅用单位来表示物理量会带来一些问题：
+
+\begin{enumerate}
+    \item 在不同的单位制下，同一个物理量会有不同的表示方式，难以达到“统一各单位”
+        的效果。例如，速度的单位在英里每小时（mph）和米每秒
+        （\si{\meter\per\second}）之间看似没有联系，但实际上都是速度的表示。尽管
+        可以通过转换来统一基本单位，但这种方法既不直观，也不方便记忆，而且选择哪
+        个单位作为统一标准也并不公平。
+    
+    \item 将现有单位拆分为基本单位的形式实际上没有意义。例如，功的单位不是“千克
+        $\cdot$平方米每平方秒”，它只是恰好与“焦耳”相等而已。此外，这样做还会导致
+        一些单位被拆分后相同但实际上不同的情况，如力矩的单位牛米
+        （\si{\newton\meter}）拆分后也是
+        \si{\kilogram\meter\squared\per\second\squared}，但显然它与功是完全不同
+        的。
+\end{enumerate}
+
+
+
+因此，引入了量纲作为表达导出单位组成的专有方式，以解决上述问题。它表示物理量与基
+本物理量（如长度、质量、时间、电流、温度、物质的量和光强度）的关系。量纲的表示通
+常使用大写字母，例如：长度（$\mathrm {L} $），质量（$\mathrm {M} $），温度
+（$\Theta$），电流（$\mathrm {I} $），时间（$\mathrm{T}$），物质的量（$\mathrm 
+{N} $），发光强度（$\mathrm {J} $）。这些基本量纲可以组合形成复合量纲。
+
+一个物理量$X$的量纲用$\dim X$表示。\index{$\dim X$}
+
+和单位不同的是，一个物理量的量纲是唯一的。比如，速度的单位可能有“米每秒”“英里每
+分钟”或“光年每年”，但是速度的量纲只有$\mathrm{LT^{-1}}$这一个。
+
+SI中的一致单位\index{一致单位}的导出表达和量纲在形式上应该是相似的，因为两者都没
+有额外的常数干扰。
+
+\subsection{量纲分析}
+
+\begin{rawthm}
+    在物理公式中，等号左右应该在谈论同一个物理量。因此，等号左右的量纲是相等的。
+\end{rawthm}
+
+这个定理可以帮助我们推导新物理量的单位（SI导出单位形式）、判断公式的正确性以及推
+导新的公式，让我们逐个举例看看。
+
+\subsubsection{推导物理量单位}
+
+下面的推导过程得出了电压这一物理量的量纲：
+\begin{align*}
+    U &= \frac{P}{I} = \frac{W\cdot t}{I} = \frac{Fxt}{I},\\
+    \dim U &= \dim \left( \frac{Fxt}{I} \right) \\
+                      &= \frac{\dim (Fxt)}{\dim I} \\
+                      &= \mathrm{L^2MT^{-3}I^{-1}}
+.\end{align*} 
+
+所以相应地，伏特这一单位与~\unit{\square\m\kg\per\cubic\s\per\A}~是一致的。
+
+\subsubsection{验证公式正确性}
+
+我们学过电流的微观表达式$I=vnqS$，其中$S$表示导体的横截面积，$n$表示在导体中的载
+流子密度（单位体积内载流子个数），$v$表示导体中载流子垂直于横截面的速度大小，$q$
+表示导体中每个载流子的电荷量。这个公式是否正确，我们可以试试量纲分析。
+
+也许你发现了，$n$就相当于例~\ref{exp:particle_density_unit}~中提及的物理量，它的
+单位应是~\unit{\per\cubic\meter}，量纲则是$\mathrm{L^{-3}}$。此外，$S$的量纲是
+$\mathrm{L^2}$；$v$的是$\mathrm{LT^{-1}}$；$q$的是$\mathrm{TI}$。
+
+将它们相乘我们得到了
+\[
+    \dim (vnqS) = \mathrm{LT^{-1}\cdot L^{-3}\cdot TI\cdot L^2 = I }
+.\] 
+
+物理量乘积$vnqS$的量纲是$\mathrm{I}$，恰好是电流，和等号左边的量纲相同，可见这个
+公式是正确的。
+
+\subsubsection{推导新公式}
+
+我们在推导单摆的周期公式时，可以先猜测其周期$T$与摆长$l$、摆重$m$和重力加速度$g$
+有关，于是我们假设
+\[
+    T = \lambda m^{x}l^{y}g^{z}   
+.\]
+其中$\lambda $是一个比例常数。
+
+左右同时取量纲，我们得到
+\[
+    \mathrm{T} = \mathrm{M}^{x}\mathrm{L}^{y}\left( \mathrm{LT}^{-2} \right)^{z} 
+.\] 
+
+根据左右量纲相等，得到
+\[
+    \begin{cases}
+        0=y+z,\\
+        0=x,\\
+        -2z=1.
+    \end{cases}
+\] 
+解得$x=0,y=\dfrac{1}{2},z=-\dfrac{1}{2}$，所以有
+\[
+    T = \lambda \sqrt{\frac{l}{g}} 
+.\] 
+只需进行试验测出$\lambda$即可。

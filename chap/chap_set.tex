@@ -14,7 +14,7 @@
 我们定义了和子集相对的概念——超集：
 
 \begin{rawdef}[超集]\index{超集}
-    集合$A$的\textbf{超集}$B$是一个集合，它含有$A$中的所有元素。记作$B \supseteq 
+    集合$A$的超集$B$是一个集合，它含有$A$中的所有元素。记作$B \supseteq 
     A$.
 \end{rawdef}
 
@@ -50,7 +50,7 @@
 
 有关补集的一个重要定律是所谓的反演律，它揭示了交集、并集、补集三者间的某种关系。
 
-\begin{rawthm}[反演律]
+\begin{rawthm}[反演律]\label{thm:de-morgan-set}
     在全集中，若干个集合并集的补集是每一个集合补集的交集；若干个集合交集的补集是
     每一个集合补集的并集。
 
@@ -97,338 +97,404 @@ B^\complement$——刚好就可以得到图~\ref{fig:venn_notAorB}~所示区域
     \end{minipage}
 \end{figure}
 
-\section[集合的基数]{集合的基数\footnote{本节内容与高中关联有限。}}
+根据定理~\ref{thm:de-morgan-set}以及其他的集合运算的性质，我们可以推导出：任意集
+合之间的恒成立式，如果其在形式上只由代表集合的字母、全集$U$、空集$\varnothing$及
+以下符号组成
+\[
+    \subseteq,\ \supseteq,\ \cup,\ \cap,\ \complement\,\text{（补集）},
+\]
+那么在形式上将$U$和$\varnothing$互换、$\subseteq$和$\supseteq$互换、$\cup$和
+$\cap$互换，仍能得到恒成立式我们这两个恒成立式叫作\textbf{对偶的}\index{对偶}。
+也就是说：\emph{集合的恒成立式总是成对出现}。这个规律适用于所有集合的恒成立式。
 
-我们知道，集合具有\textbf{确定性}。这一点说明，\textbf{每一个集合都有确定的元素
-个数}。我们把集合的元素个数叫作这个集合的\textbf{基数}\index{基数}，也叫
-\textbf{势}\index{势}。对于有限集$A$，它的基数是一个自然数，记作$\card{A}
-$\footnote{这里给出的是课本上的表示法，一个集合的基数的写法还有$\abs{A}$、$\# A$、
-$\overline{A}$、$\overll{A}$等。}。我们直观地将集合的基数理解为集合的大小。
+比如，$A \cap B \subseteq A$的对偶恒成立式是$A \cup B \supseteq A$；$A \cap 
+\varnothing = \varnothing$的对偶是$A \cup U = U$。 
 
-考虑集合$\left\{ 1,2,3 \right\} $和集合$\left\{ 2,3,4 \right\} $，它们不相等，但
-是有相同的基数。对于这个例子，这个结论是显然的。但是，究竟怎么一般地比较两个集合
-的元素个数？满足了什么条件，我们才能说两个集合具有相同的基数？
 
-根据一年级教科书中的相关内容\cite{pep_math_1A}，我们尝试将被比较的两个集合中的元
-素\textbf{一一对应}。如果两个集合的元素可以完成这种“一一对应”，并且最后都恰好用
-完了两个集合中的元素，那么我们就说，两个集合拥有相同的基数，又称\textbf{等势}
-\index{等势}；如果在其中一个集合的所有元素都用完的时候，另一个集合中还存在没有被
-“配对”的元素，那么我们说，前者的基数小于后者。
+\section{笛卡儿积}
 
-等势是一种等价关系，具有传递性。也就是说，与相同集合$A$等势的两个集合$B$和$C$等
-势。
+\subsection{二元笛卡儿积}
 
-我们在学习子集\index{子集}的时候，也许知道：对于一个$n$元有限集$A$（基数为$n$的
-有限集），其子集的个数为$2^n$。这很容易理解，在构建一个子集的时候，对于$A$中的每
-一个元素$a_i$，都有\emph{放入}与\emph{不放入}两种选择。而每一个元素的选择互相独
-立。所以我们便得出了$2^n$的结果。
+一副扑克牌，去掉大小王之后有52张。它们包括黑桃$\spadesuit$、红心$\heartsuit$、
+草花$\clubsuit$和方块$\diamondsuit$四个花色，每个花色有A--K\footnote{A,2,3,4,5,%
+6,7,8,9,10,J,Q,K}共13张。
 
-\begin{rawdef}[幂集]
-    一个集合的幂集是由该集合全部子集为元素构成的集合。集合$S$的幂集记作
-    $\mathcal{P}(S)$，即
+如何用集合方便地表述一副去掉大小王的扑克牌呢？我们自然可以使用列举法：
+\begin{align*}
+    \{\, &\spadesuit \ace,\ \spadesuit 2,\ \spadesuit 3,\cdots,\ \spadesuit \queen,\ 
+    \spadesuit \king, \\
+       &\heartsuit \ace,\ \heartsuit 2,\ \heartsuit 3,\cdots,\ \heartsuit \queen,\ 
+    \heartsuit \king, \\
+       &\clubsuit \ace,\ \clubsuit 2,\ \clubsuit 3,\cdots,\ \clubsuit \queen,\ 
+    \clubsuit \king, \\
+       &\diamondsuit \ace,\ \diamondsuit 2,\ \diamondsuit 3,\cdots,\ \diamondsuit \queen,\ 
+    \diamondsuit \king\, \}.
+\end{align*}
+列举法的缺点是显而易见的：太过冗长，并且不宜直观体现这一集合的性质。我们可以使用
+另一种方式。我们先列出花色集合和点数集合：
+\begin{align*}
+    S &= \left\{ \spadesuit,\heartsuit,\clubsuit,\diamondsuit \right\},\\
+    R &= \left\{ \ace,2,3,4,5,6,7,8,9,10,\jack,\queen,\king \right\}.
+\end{align*}
+这52张牌的一张可以以这种方式确定：先从$S$中选一个花色，比如$\clubsuit$；再从$R$
+中选一个花色，比如4。这样我们便确定了$\clubsuit 4$这张牌，在这里我们记作$\left( 
+\clubsuit, 4\right) $。这是一个\textbf{有序对}\index{有序对}。
+
+这样一来，52张牌组成的集合就可以表示为：
+\[
+    D = \left\{ \left( s,r \right) \,|\, s\in S,\, r\in R \right\}.
+\]
+
+由此，我们做出如下定义。
+
+\begin{rawdef}[笛卡儿积]\index{笛卡儿积}
+    两个集合$A$和$B$的笛卡儿积，又称直积\index{直积|see{笛卡儿积}}，是所有满足的
+    有序对组成的集合，有序对的第一个对象是$A$中元素，第二个对象是$B$中元素，记作
     \[
-        \mathcal{P}(S)\coloneqq \left\{ U \,|\, U \subseteq S \right\}.
+        A \times B = \left\{ \left( a,b \right) \,|\, a\in A,\, b\in B \right\}.
     \]
 \end{rawdef}
 
-有了幂集的概念，我们就可以方便的把子集个数的定理表示为：
+这样一来，上面扑克牌中的$D$也可以表示为$S\times R$。
+
+请注意，虽然使用了代数乘法的符号，笛卡儿积运算并不满足交换律。也就是说，当$A\neq
+B$时，$A \times B \neq B \times A$。其原因在于有序对。顾名思义，有序对是\emph{有
+序}的——$\left( a,b \right)$与$\left( b,a \right) $表示的并非相同的东西，除非
+$a=b$。
+
+根据定义，当参与笛卡儿积运算的两个集合有一个是空集的时候，其结果也是空集，因为我
+们无法从空集中取出元素构成有序对：$A \times \varnothing = \varnothing \times A = 
+\varnothing$。
+
+此外，笛卡儿积对集合的并和交满足分配率，即
+\begin{align*}
+    A\times (B\cup C)=(A\times B)\cup (A\times C),\\
+    (B\cup C)\times A=(B\times A)\cup (C\times A),\\
+    A\times (B\cap C)=(A\times B)\cap (A\times C),\\
+    (B\cap C)\times A=(B\times A)\cap (C\times A),\\
+    (A\times B)\cap (C\times D)=(A\cap C)\times (B\cap D).
+\end{align*}
+
+
+笛卡儿积很适合用来表示“所有可能的结果”，如例~\ref{exp:dice}。
+
+\begin{rawexp}\label{exp:dice}
+    投掷一个六面体骰子两次，用集合表达所有可能的结果。
+\end{rawexp}
+
+\begin{rawsol}
+    容易知道投掷一次的结果
+    \[
+        S = \left\{ 1,2,3,4,5,6 \right\}.
+    \]
+
+    对于投掷两次的情形，所有的结果为
+    \begin{align*}
+        R &= S \times S\\
+          &= \left\{ \left( s_{1},s_{2} \right) \,|\, s_{1}\in S,\,s_{2}\in S \right\} .
+    \end{align*}
+\end{rawsol}
+
+按照这种方法，我们可以将二维坐标平面上的点的集合记作$\mathbb{R}\times\mathbb{R}$，
+甚至$\mathbb{R}^2$。
+
+\subsection{多元笛卡儿积}
+
+有了二元笛卡儿积的概念，我们可以将其推广到多元。
+
+\begin{rawdef}[$n$-元笛卡儿积]\index{n元笛卡儿积@$n$-元笛卡儿积}
+    对于正整数$n$，$n$-元笛卡儿积定义为：对于$n$个集合$X_{1},X_{2},\cdots,X_{n}$，
+    \begin{align*}
+        \prod_{i=1}^n X_{i}&\coloneq X_{1}\times X_{2}\times \cdots \times X_{n} \\
+                           &\coloneq \left\{ \left( x_{1},x_{2},\cdots,x_{n} 
+                               \right) \,|\, x_{1} \in X_{1},\, x_{2}\in X_{2},
+                           \cdots,\,x_{n}\in X_{n}\right\}.
+    \end{align*}
+\end{rawdef}
+
+符号$\coloneq$表示“被定义为”，指的是前面的被定义等于后面的。它也可以反着写作
+$\eqcolon$，表示“定义为”。\index{$\coloneq$}
+
+可见，$n$-元笛卡儿积中的每一个元素都是一个\textbf{$n$-元组}\index{n元组@$n$-元
+组}，它相当于有$n$个对象（而不再是两个）的“有序对”，不过叫另一个名字。
+
+和二元笛卡儿积类似，$n$-元笛卡儿积同样被用来列举所有可能的元素。比如，一天有24小
+时，每小时有60分钟，每分钟有60秒。那么我们列出一天中小时、分钟和秒钟的集合：
+\begin{align*}
+    H &= \left\{ 0,1,2,\cdots,22,23 \right\},\\
+    M &= \left\{ 00,01,02,\cdots,58,59 \right\},\\
+    S &= \left\{ 00,01,02,\cdots,58,59 \right\}.
+\end{align*}
+这样以来，一天中的每一秒钟可以表示为$H\times M\times S$。
+
+和二维的情况类似，三维坐标空间也常被表示为$\mathbb{R}\times\mathbb{R}
+\times\mathbb{R}$，或$\mathbb{R}^3$。
+
+\section{映射的概念}
+
+我们已经学习过函数，知道它的三个要素：定义域、值域和对应法则。我们知道，一个函数
+总将定义域中的一个元素对应到值域中的一个确定的元素。然而，在中学范围内我们研究的
+都是数集上的函数。在这一节中，我们将介绍抽象化的“映射”概念。在数学中，“映射”和
+“函数”表达的实质是相同的。相比来说，我们高中所学的函数着重强调其算数上的性质——单
+调性、奇偶性、极大（小）值等，但本节介绍的则是纯粹的在“对应关系”层面上的性质。
+
+\subsection{定义域、陪域和值域}
+
+\begin{rawdef}[映射]\index{映射}
+    设$A$和$B$是两个非空集合，若对$A$中任意的元素$x$，依照某总确定的规律或法则
+    $f$，总有$B$中唯一确定的元素$y$与之对应，则称此对应规律或法则$f$为一个从$A$
+    到$B$的映射。记作
+    \[
+        f: A \to B.
+    \]
+    如果$f$将$A$中元素$x$映射到$B$中元素$y$，则记作$f: A\to B: x\mapsto y$。
+
+    用形式语言表述，一个对应关系$f$是$A$到$B$的映射的一个充要条件是
+    \[
+        \forall x \in A, \exists y \in B, f(x)=y.
+    \]
+\end{rawdef}
+
+我们称$A$为映射$f: A \to B$的\textbf{定义域}\index{定义域}；称$B$为其\textbf{陪
+域}\index{陪域}，又叫\textbf{到达域}\index{到达域|see{陪域}}；称$A$中所有元素被
+$f$作用的结果组成的集合$\left\{ f(x) \,|\, x\in A \right\} $叫作\textbf{值域}
+\index{值域}。有时候也把$\left\{ f(x) \,|\, x\in A \right\} $简记作$f(A)$。
+
+请注意，陪域和值域是不同概念。陪域总是值域的超集。记号$f: A \to B$只是说明了$f$
+对于$A$中元素的作用结果总是$B$中的元素，并没有说明所有$B$中的元素都会被使用。
+
+\subsection{单射、满射和双射}
+
+一个映射的陪域不一定是它的值域。对于那些值域和陪域相等的映射，我们叫它\textbf{满
+射}。
+
+\begin{rawdef}[满射]\index{满射}
+    $f:X\to Y$是满射，当其陪域与值域相等。即对于陪域$Y$中的任意元素$y$，在定义域
+    $X$中存在一个元素$x$使得$f(x)=y$。
+
+    用形式语言表述，$f:X\to Y$是满射的一个充要条件是
+    \[
+        \forall y \in Y, \exists x \in X, f(x)=y.
+    \]
+\end{rawdef}
+
+图~\ref{fig:map_onto}~表达了一个满射。从中我们可以知道，陪域中的每一个元素都是某
+一个定义域中元素的作用结果。在图上的体现是，陪域中的每一个元素都被至少被一个箭头
+指着。所以“满”射指的是一个映射作用的结果“填满了”整个陪域。
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}{12em}
+    \centering
+    \begin{tikzpicture}[scale=.5]
+        \draw[thick] (0,0) circle [x radius=1.5, y radius=3.8]
+            (4,0) circle [x radius=1.5, y radius=3];
+        \node at (0,-5) {定义域};
+        \node at (4,-5) {陪域};  
+
+        \node (a1) at (0,2.4)   {1};
+        \node (a2) at (0,0.8)   {2};
+        \node (a3) at (0,-0.8)  {3};
+        \node (a4) at (0,-2.4)  {4};
+
+        \node[circle] (b1) at (4,2)  {$a$}; 
+        \node[circle] (b2) at (4,0)  {$b$};
+        \node[circle] (b3) at (4,-2) {$c$};
+
+        \draw[thick,->] (a1.east) -- (b1);
+        \draw[thick,->] (a2.east) -- (b1);
+        \draw[thick,->] (a3.east) -- (b2);
+        \draw[thick,->] (a4.east) -- (b3);
+    \end{tikzpicture}    
+    \caption{一个满射的示意}\label{fig:map_onto}
+\end{minipage}
+\qquad
+\begin{minipage}{12em}
+    \centering
+    \begin{tikzpicture}[scale=.5]
+        \draw[thick] (0,0) circle [x radius=1.5, y radius=3.8]
+            (4,0) circle [x radius=1.5, y radius=4.5];
+        \node at (0,-5.5) {定义域};
+        \node at (4,-5.5) {陪域};  
+
+        \node (a1) at (0,2.4)   {1};
+        \node (a2) at (0,0.8)   {2};
+        \node (a3) at (0,-0.8)  {3};
+        \node (a4) at (0,-2.4)  {4};
+
+        \node[circle] (b1) at (4,4)  {$a$}; 
+        \node[circle] (b2) at (4,2)  {$b$}; 
+        \node[circle] (b3) at (4,0)  {$c$};
+        \node[circle] (b4) at (4,-2) {$d$};
+        \node[circle] (b5) at (4,-4) {$e$};
+
+        \draw[thick,->] (a1.east) -- (b5);
+        \draw[thick,->] (a2.east) -- (b1);
+        \draw[thick,->] (a3.east) -- (b2);
+        \draw[thick,->] (a4.east) -- (b4);
+    \end{tikzpicture}    
+    \caption{一个单射的示意}\label{fig:map_one2one}
+\end{minipage}
+\end{figure}
+
+你会发现，\emph{研究映射时，规定定义域和陪域是很重要的。}在高中学习函数时，我们
+只学到定义域和对应法则是很重要的。但是在研究映射的时候，规定好陪域同样重要，因为
+这涉及到这个映射是否为满射。
+
+比如，考虑两个映射：
+\[
+    \begin{aligned}
+        f: \mathbb{R} &\to \mathbb{R}\\
+        x &\mapsto x^2
+    \end{aligned}
+    \quad \text{和}\quad
+    \begin{aligned}
+        g: \mathbb{R} &\to \left[ 0,+\infty \right)\\
+        x &\mapsto x^2.
+    \end{aligned}
+\]
+它们的定义域和对应法则完全相同——都是把实数$x$映射到$x^2$。然而我们说，$f$不是满
+射，而$g$是满射，因此$f$和$g$是两个不同的映射。
+
+\begin{rawdef}[单射]\index{单射}
+    映射$f: X\to Y$是单射，当它将不同的输入值对应到不同的函数值上。
+
+    用形式语言表述，$f: X\to Y$是单射的一个充要条件是
+    \[
+        \forall x_{1},x_{2} \in X, f\left(x_{1}\right)=f\left(x_{2}\right) 
+        \Leftrightarrow x_{1}=x_{2}
+        .
+    \]
+\end{rawdef}
+
+图~\ref{fig:map_one2one}~表达了一个单射。我们可以由此知道：
+\begin{rawthm}\label{thm:monotone_one2one}
+    单调函数都是单射。
+\end{rawthm}
+
+如果有一个映射，它既是单射、又是满射，那么我们称它为\textbf{双射}。
+
+\begin{rawdef}[双射]\index{双射}
+    映射$f:X\to Y$是双射，当它既是满射，又是单射。在这种情况下，对于定义域$X$内
+    每一元素$x$，存在唯一一个$Y$内的元素$y$与之对应；对于陪域$Y$内的每一元素$y$，
+    存在唯一一个$X$内的元素$x$与之对应。记作$f: X\leftrightarrow Y$。
+
+    特殊地，当$Y=X$时，双射$f: X\leftrightarrow X$也叫作\textbf{置换}
+    \index{置换|see{双射}}\index{置换}
+
+    用形式语言表述，$f: X\to Y$是双射的一个充要条件是
+    \[
+        \left\{
+        \begin{matrix}
+            \forall y \in Y, \exists x \in X, f(x)=y.\\
+            \forall x_{1},x_{2}\in X, x_{1}\neq x_{2}\Rightarrow f(x_{1})\neq f(x_{2}).
+        \end{matrix}
+        \right.
+    \]
+\end{rawdef}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=.5]
+        \draw[thick] (0,0) circle [x radius=1.5, y radius=3.8]
+            (4,0) circle [x radius=1.5, y radius=3.8];
+        \node at (0,-5.5) {定义域};
+        \node at (4,-5.5) {陪域};  
+
+        \node (a1) at (0,2.4)   {1};
+        \node (a2) at (0,0.8)   {2};
+        \node (a3) at (0,-0.8)  {3};
+        \node (a4) at (0,-2.4)  {4};
+
+        \node[circle] (b1) at (4,2.4)  {$a$}; 
+        \node[circle] (b2) at (4,0.8)  {$b$}; 
+        \node[circle] (b3) at (4,-0.8)  {$c$};
+        \node[circle] (b4) at (4,-2.4) {$d$};
+
+        \draw[thick,->] (a1.east) -- (b3);
+        \draw[thick,->] (a2.east) -- (b1);
+        \draw[thick,->] (a3.east) -- (b2);
+        \draw[thick,->] (a4.east) -- (b4);
+    \end{tikzpicture}    
+    \caption{一个双射的示意}\label{fig:map_biject}
+\end{figure}
+
+图~\ref{fig:map_biject}~表达了一个双射。根据定理~\ref{thm:monotone_one2one}，我
+们可以推出：
+\begin{rawthm}\label{thm:monotone_biject}
+    如果陪域为值域，则单调函数都为双射。
+\end{rawthm}
+
+\section{集合的基数}
+
+人类先在生活中认识到了各种各样的集合，才逐渐形成了数（自然数）的概念。所以说，自
+然数是用来数集合中元素的个数的。人类在自然界见到了各种各样的集合，有一些集合看起
+来不同，但是我们的祖先冥冥之中发掘了其中的某种联系：比如，鸟的（两只）翅膀和人的
+（两只）眼睛，它们显然不同，但是都可以表达数“二”。这种“拥有相同元素个数”的集合越
+来越多，人们便从中总结出了数的概念。\cite{dantzig2007number}
+
+在数学中，我们用\textbf{基数}\index{基数}或\textbf{势}\index{势|see{基数}}来表示
+集合中元素的“个数”。但是，和日常语言中的“个数”不同的是，势的概念不受限于有限集的
+情形。有限集的基数的意义和日常用语的“个数”相同，比如，集合$\left\{ 3,5,7 \right\}
+$的基数是3。无限集基数的意义则在于比较集合的大小。
+
+集合$A$的基数有很多种表示方法，课本上使用了$\card A$，其中card是英文cardinal（基
+数）的缩写。此外，还有$\abs{A}$、$\abs{\abs{A}}$、$\overll{A}$等。
+\index{$\card A$}\index{$\card A$|see{基数}}
+
+\subsection{有限集的基数、幂集}
+
+对于有限集，它的基数就是它含有的元素个数。我们知道，整体大于部分，所以下面的定理
+是成立的。
+
+\begin{rawthm}\label{thm:finiteset_card_subset}
+    一个有限集$A$的子集$B$的基数不大于$A$的基数。即当$A$是有限集，
+    \[
+        B \subseteq A \Rightarrow \card B \le \card A.
+    \]
+\end{rawthm}
+
+比如，由于$P = \left\{ 1,4,6,7 \right\} $是$Q = \left\{ 1,2,3,4,5,6,7 \right\} $
+的子集，所以$\card P \le \card Q$。定理~\ref{thm:finiteset_card_subset}~将会在第
+XX章证明——在我们介绍了数学归纳法之后。% TODO: chap
+
+我们知道一个$n$-元有限集\index{n元有限集@$n$-元有限集}（基数为$n$的有限集）的子
+集个数是$2^n$。这很容易理解：在构建一个子集的时候，原集合中的每一个元素都有两种
+选择——选入和不选入。所以对于原集合中的$n$个元素，就总共有$2^n$种选择方式。
+
+\begin{rawdef}[幂集]\index{幂集}
+    \index{$\mathcal{P}(A)$}\index{$\mathcal{P}(A)$|see{幂集}}
+    一个集合$A$的幂集是所有$A$的子集组成的集合，记作
+    \[
+        \mathcal{P}(A) = \left\{ a\,|\, a\subseteq A \right\} .
+    \]
+\end{rawdef}
+
+所以上面的结论可以表述成下面的定理。
+
 \begin{rawthm}
-    对于一个有限集$A$，有
+    $n$-元有限集$A$的幂集$\mathcal{P}(A)$的基数为$2^n$。即
     \[
         \card \left( \mathcal{P}(A) \right) = 2^{\card A}.
     \]
 \end{rawthm}
 
+\subsection{用映射比较集合基数大小}\index{映射}
 
-\subsection{有限集的基数}
+我们在前一节了解了映射，知道了它是在两个集合之内的一个对应关系。通过映射，我们可
+以有效比较集合的基数大小。
 
-对于有限集，这是很容易理解的。托比阿斯·丹齐格（Tobias Dantzig）曾在他的文章中举
-过一个例子。\cite{dantzig2007number}
+对于两个集合$A$和$B$，我们可以尝试构造一个映射$f: A \to B$。根据这个映射的性质，
+我们可以区分以下几种情况。
 
-\begin{quotation}
-    ……然而，尽管看起来很奇怪，我们可以在不借助计数技巧的情况下，得出一个逻辑上明
-    确的数字概念。
+\begin{description}
+    \item[单射]\index{单射} 如果$f$是一个单射，那么$A$的基数不大于$B$的基数，即
+        $\card A \le \card B$。
 
-    我们进入一个大厅。在我们面前有两组东西：观众席和观众。我们无需计数即可确定这
-    两组是否相等，如果不相等，哪一组更大。因为如果每个座位都有人坐满，没有人站着，
-    我们无需计数就知道这两组是相等的。如果每个座位都有人坐满，观众中有些人站着，
-    我们无需计数就知道人数比座位多。
-\end{quotation}
+    \item[满射]\index{满射} 如果$f$是一个满射，那么$A$的基数不小于$B$的基数，即
+        $\card A \ge \card B$。
 
-在这里，丹齐格所说的“座位上都有人”就是一种座位集合和人集合间的一一对应。如果反过
-来，每个人都已有座位坐下，还有空座位，那么我们就知道座位数比人数多。丹齐格在这里
-说“无须计数”，是因为我们先认识了这种“一一对应”的法则，才逐渐有了数的认识。丹齐格
-在文章里还说：
-
-\begin{quotation}
-    乍一看，对应过程似乎只能用于比较两组集合，但无法在绝对意义上创建数字概念。然
-    而，从相对数字到绝对数字的过渡并不困难。只需要创建模型集合，每个模型集合代表
-    一种可能的集合。然后，估计任何给定集合就简化为在可用模型中选择一个可以与给定
-    集合逐个对应的模型。
-
-    原始人类在其直接环境中找到了这样的模型：鸟的翅膀可以象征数字二，三叶草象征数字三，
-    动物的腿象征数字四，他自己手上的手指象征数字五。许多原始语言中可以找到这种数字词
-    起源的证据。当然，一旦这种方法被采用，数字概念就得到了发展和普及。
-\end{quotation}
-
-按照丹齐格的说法，我们通过数数来比较有限集$A$和$B$的过程实质上是把$A$中元素和$B$
-中元素都对应到自然数集，再比较的过程。
-
-\subsection{无限集的基数}
-
-而对于“没有终结”的无限集，情况则变得复杂。也许你会认为所有无限集的基数相等，都为
-“无限”或“正无穷”，但事实上，“无限”之间也可以比大小。
-
-\subsubsection{希尔伯特旅馆}\index{希尔伯特旅馆}
-
-一个有趣的例子是所谓的“希尔伯特旅馆”。假设有一家拥有无限个房间的旅馆，每
-个房间都有自己唯一的正整数编号：$1,2,3,4,\ldots $。某一天，这个旅馆\emph{每个房间
-都客满了}。也许你好奇这样的一间旅馆是怎么住满的，但我们无须太在意这个。只需记住
-在这一天，每一个正整数房间号所对应的房间里都是有客人的。
-
-这时候，来了一个新客人想入住旅馆。我们可能认为，既然旅馆已经住满，那想必没办法再
-安排这位客人入住了。但是这时酒店的经营者想出了一个办法：\emph{让每一个房间中的客
-人移动到下一个房间里去}。也就是说：1号房间的客人移到2号房间，2号房间的客人移动到
-3号房间，……，$n$号房间的客人移动到$n+1$号房间。这样一来，我们便空出了1号房间，
-刚好够容纳这位新客人的了。
-
-这位客人刚入住完毕，突然又来了10组客人，也想办理入住。这次，酒店的经营者使用了类
-似的办法，让$n$号房间的客人移动到$n+10$号房间，成功空出了1--10号房间，安置了10组
-新客人。
-
-一会儿之后（旅馆仍然保持“客满”的状态），来了\emph{无限}多个客人。这些客人同属一
-个旅游团，每人都有自己的正整数编号，并希望入住旅馆，每人得到一个新房间。这下，经
-营者不能使用先前“后移”的方法了。但是，聪明的经营者想到了另一个方法：\emph{让每一
-个房间中的客人移动到自己房间号的两倍对应的房间里去}。也就是说：1号房的客人到2号
-房，2号房的客人到4号房，3号房的客人到6号房，……，$n$号房的客人到$2n$号房。原来旅
-馆中的客人们经过这次变换，都住进了房号为偶数的房间——$2,4,6,8,\ldots $；而奇数房
-——$1,3,5,7,\ldots $则都空了出来。这些奇数房恰好可以用来安置我们新来的无限位客人，
-只需让编号为$k$的新客人入住$2k-1$号房就好了。
-
-再后来（旅馆仍然客满），来了\emph{无限}多个旅游团，每个旅游团都有\emph{无限}多个
-客人。这些旅游团每个都有各自的正整数编号，且每一个旅游团内的客人都类似上一段中所
-讲的那样。而经营者同样有办法招待这些客人们。首先，他像上一段中那样空出了所有的奇
-数房间，再让第1个旅游团的第$n$个客人入住$3^n$号房间，第2个旅游团的第$n$个客人入
-住$5^n$号房间，以此类推，第$i$个旅游团的客人入住第$p_{i+1}^n$号房间（其中$p_{i+1}
-$是第$i+1$个质数）。这下，每个新来的客人都有房间住了。
-
-\vspace{3ex}
-
-希尔伯特旅馆的例子实际上解释了：
-\begin{enumerate}
-    \item $\card\mathbb{N}=\card\mathbb{N}^\ast.$ 要说明这一点，我们只需建立等价
-        关系$f: \mathbb{N} \to \mathbb{N}^\ast$，定义为$f(n)=n+1$。这样，两个集
-        合间就被我们建立了一种“一一对应”。
-
-    \item $\card\mathbb{N}=\card\left\{ 2x\,|\,x\in\mathbb{N} \right\}.$ 对于这
-        一点，我们定义$g: \mathbb{N} \to \left\{ 2x\,|\,x\in\mathbb{N} \right\}$
-        满足$g(n)=2n$，这就是这两个集合间的一种一一对应关系。
-\end{enumerate}
-
-\subsubsection{单调性证明无限集等势}
-
-你也许注意到了在上面我们定义的$f$与$g$的表达式都是一次函数，更广泛地说，它们都是
-\emph{单调的}。这就保证了在我们定义的范围内，不会出现重复对应的情况。因此我们才
-说，这是一种“一一对应”。
-
-类似的使用单调函数的方法还可以被用来证明其他集合等势，以下是一些例子：
-
-\begin{enumerate}
-    \item $\left( 0,1 \right) $与$\left( 0,a \right) $，其中$a > 0$或$\left( a,0 
-        \right) $，其中$a < 0$：\label{item:01and0a}
-
-        考虑函数$f(x)=ax$，其中$x\in \left( 0,1 \right)$。
-
-    \item $\left( 0,1 \right) $与$\left( -\infty,+\infty \right) $（即$\mathbb{R}
-        $）：
-
-        考虑函数$f(x)=\tan \left( \pi \left( x - \dfrac{1}{2} \right)  \right) $，
-        其中$x\in \left( 0,1 \right) $。
-\end{enumerate}
-
-从~\ref{item:01and0a}~我们可以知道所有$\mathbb{R}$上的闭区间都是等势的：只需把%
-~\ref{item:01and0a}~中的$a$替换成$q-p$，我们就知道$\left( 0,1 \right) $与$\left( 
-0,q-p \right) $等势。而通过平移后者（容易证明平移前后的两个区间等势），我们就知
-道所有闭区间$\left( p,q\right) $都与$\left( 0,1 \right) $等势。
-
-\subsubsection{可数集}
-
-注意，本小节所说的“可数”不是英语中名词的性质（countable）。
-
-当我们“数数”的时候，我们不由自主地从正整数开始数：$1,2,3,4,\ldots $所以我们定义
-了可数集：
-
-\begin{rawdef}[可数集]\index{可数集}
-    \textbf{可数集}是与自然数集的某个子集等势的集合。如果一个集合和自然数集等势，
-    那么它是一个\textbf{无限可数集}\index{无限可数集}。
-\end{rawdef}
-
-简单来说，如果一个集合中的元素个数是\emph{数得清的}，那么它就是可数集。“数得清”，
-指的是\emph{你永远知道从哪个元素开始，也知道每次数完一个元素后，下一个元素该数哪
-个，才能既不重复，也不遗漏}。我们能“数得清”正偶数集$\left\{ 2x\,|\,x\in\mathbb{N}
-^\ast\right\} $，因为我们可以从2开始，每数一个数$k$，就接着数下一个数$k+2$。这样
-以来，我们就说正偶数集是一个可数集。准确一点，它还是一个无限可数集。
-
-一个理解无限可数集与自然数等势的方式是想象甲乙二人逐个数集合中的元素。甲总是按照
-正整数的顺序数$1,2,3,\ldots $；而乙则按照顺序数一个无限可数集。我们让甲乙每次总
-是同时报出一个数字。这样以来，同时报出的两个数字间就形成了一种对应关系。比如，下
-面的甲乙报数的例子体现了正整数集和完全平方数集等势：
-
-\vspace{2ex}
-\begin{minipage}{\textwidth}
-    \begin{itemize}
-        \item[\textbf{甲}：] $1,\quad 2,\quad 3,\quad 4\,\ , \cdots,\quad n\,\ , \cdots$
-        \item[\textbf{乙}：] $1,\quad 4,\quad 9,\quad 16, \cdots,\quad n^2, \cdots$
-    \end{itemize}
-\end{minipage}
-\vspace{2ex}
-
-那理论上，我们只需要尝试在一个集合中寻找一种能“数清”这个集合的方法，就可以知道这
-个集合是否是一个可数集。比如，我们可以数清整数集$\mathbb{Z}$：从0开始，再数每个
-正整数。但在每个正整数$n$之后，$n+1$之前，插入一个$n$的相反数$-n$。这样，
-$\mathbb{Z}$就被我们数成了：
-\[
-    0,\quad 1,\quad -1,\quad 2,\quad -2,\quad 3,\quad -3,\quad 4,\cdots
-\]
-这样一来，$\mathbb{Z}$就是一个无限可数集。
-
-另一个例子是自然数有序对的集合$P=\left\{ \left( a,b \right) \,|\, a,b\in\mathbb{N} 
-\right\} $，它也是一个无限可数集。我们知道，有序数对$\left( p,q \right) $可以唯
-一地确定二维平面上的一个点。那我们可以结合二维平面，找到一种有序遍历$P$中所有元
-素的方法，如图~\ref{fig:pairing_natural}~所示。
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\linewidth]{fig/pairing_natural.png}
-    \caption{一种遍历集合$P$中元素的路径}\label{fig:pairing_natural}
-\end{figure}
-
-在图~\ref{fig:pairing_natural}~中，我们从原点$\left( 0,0 \right) $开始，沿着箭头
-前进，最终途径了所有$P$中元素对应的点。在图中你可以见到，每一个我们到访的节点旁
-边都标注了一个自然数，这便是集合$P$中元素的次序。依照这个次序，我们就可以数出所
-有集合$P$中的元素，从而说明它是一个无限可数集。
-
-把集合$P$替换为正有理数集合$\left\{\left. \dfrac{a}{b}\,\right|\, a\in 
-\mathbb{N},\,b\in\mathbb{N}^\ast \right\} $，那我们同样可以用类似的方法说明
-它是一个无限可数集。再根据和$\mathbb{Z}$类似的方法，我们可以说明：
-
-\begin{rawthm}
-    自然数集$\mathbb{N}$、正整数集$\mathbb{N}^\ast$、整数集$\mathbb{Z}$和有理数
-    集$\mathbb{Q}$四者是等势的。
-\end{rawthm}
-
-\subsubsection{$\mathbb{N}$与$\mathbb{R}$不等势：康托尔对角线证明}
-
-1891年，格奥尔格·康托尔（Georg Cantor）提出了\textbf{对角线证明}\index{对角线证
-明}，证明了实数集是\textbf{不可数集}。也就是说，实数集与有理数集不等势，且实数集
-的势大于有理数集。
-
-到目前为止，我们只证明过（至少尝试说明过）集合等势——找到一个一一对应。但如何证明
-集合不等势呢？
-
-要证明两个集合不等势，我们要证明两个集合间\emph{不存在}一一对应。也就是说，
-\emph{对于任意}我们尝试建立的两个集合间的对应关系$f$，$f$\emph{总不是}一个一一对
-应。
-
-显然，尝试找到所有可能的对应关系，并逐个证明它们不是一一对应的做法是不现实的。一
-种常见的证明思路是使用反证法。%（我们将在第？？章提到） TODO:
-
-在证明中，康托尔研究了自然数集与闭区间$\left( 0,1\right) $。由于后者与实数集等势，
-只要证明闭区间的势比自然数集的大就可以说明实数集和自然数集的关系了。康托尔的证明
-思路如下。
-
-我们假设$\left( 0,1 \right) $是一个无限可数集。并且我们知道，这个区间内的每一个
-数都可以用小数形式表达。
-
-既然这个闭区间是可数的，那我们就将其按照规律列出：
-
-\begin{table}[h]
-    \centering
-    \caption{假设的一种对应关系}\label{tbl:cantor_diagonal}
-    \begin{tabular}{r|l}
-        $\mathbb{N}$& $\left( 0,1 \right) $\\
-        \hline
-        0 & $0.24723159\ldots $\\
-        1 & $0.12749325\ldots $\\
-        2 & $0.35723957\ldots $\\
-        3 & $0.58923933\ldots $\\
-        4 & $0.93910272\ldots $\\
-        5 & $0.44865920\ldots $\\
-        $\vdots$ & $\vdots$
-    \end{tabular}
-\end{table}
-
-根据我们的假设，表~\ref{tbl:cantor_diagonal}~的左边有所有的自然数，右边则有所有
-$\left( 0,1 \right) $中的实数。由于这些实数很有可能是无理数，所以表中都以无限小数
-的形式列出（可以把有限小数看成最后有无限个0的无限小数）。
-
-然而，我们说，我们总可以找到（构造出）一个新的数$r$，它不可能出现在表~\ref{tbl:cantor_diagonal}~%
-的右边。下面是它的构造方法。
-
-我们先从表中构建一个数字$r_{0}$。我们考虑表~\ref{tbl:cantor_diagonal}~中自然数0
-所对应的数（第一个数），取其小数点后第一位数来当我们构造的$r_{0}$小数点后的第一位；
-取表中自然数1所对应的数（第二个数）小数点后的第二位，来当$r_{0}$小数点后的第二位；
-以此类推，$r_{0}$小数点后第$n$位数总是表~\ref{tbl:cantor_diagonal}~中自然数$n-1$
-所对应的实数小数点后的第$n$位，如表~\ref{tbl:cantor_diagonal_maker0}~所示。其中
-$r_{0}$所用到的数字用粗体指出。
-
-\begin{table}[h]
-    \centering
-    \caption{$r_{0}$的构造过程}\label{tbl:cantor_diagonal_maker0}
-    \begin{tabular}{r|l}
-        $\mathbb{N}$& $\left( 0,1 \right) $\\
-        \hline
-        0 & $0.\mathbf{2}4723159\ldots $\\
-        1 & $0.1\mathbf{2}749325\ldots $\\
-        2 & $0.35\mathbf{7}23957\ldots $\\
-        3 & $0.589\mathbf{2}3933\ldots $\\
-        4 & $0.9391\mathbf{0}272\ldots $\\
-        5 & $0.44865\mathbf{9}20\ldots $\\
-        $\vdots$ & $\vdots$
-    \end{tabular}
-\end{table}
-
-这样我们便构造出了
-\[
-    r_{0}=0.227209\ldots 
-\]
-接下来是关键的一步，我们将$r_{0}$小数点后的\emph{每一位数都加1}（如果这一位数是9，
-那就变成0），把新的数记作$r$。这一步的目的是让$r$小数点后的每一位都与$r_{0}$不同。
-我们有：
-\[
-    r=0.338310\ldots 
-\]
-
-那么我们说，这样构造出的$r$\emph{不可能}出现在表~\ref{tbl:cantor_diagonal}~的右
-边。也就是说，根据表~\ref{tbl:cantor_diagonal}~的对应关系，不可能有自然数$n$对应
-到我们构造出的$r$。
-
-如何证明$n$不存在呢？依然利用反证法。首先，$n$总不可能是0，因为表中0所对应的实数
-小数点后的第一位数就与$r$小数点后的第一位数不同；$n$也不可能是1，因为1所对应的实
-数小数点后的第二位数与$r$的不同；$n$同样不可能是2，因为2所对应的实数小数点后的第
-三位数与$r$的不同……
-
-事实上，对于任意的自然数$k$，$k$在表中所对应的实数（不妨记作$p_k$）小数点后的第
-$k+1$位数总与$r$小数点后的第$k+1$位数不同。因为根据$r$的构造过程，$p_k$小数点后
-的第$k+1$位数总是和$r_{0}$小数点后的第$k+1$位数相同。但是我们构造中“逐位加1”的操
-作保证了$r$小数点后的第$k+1$位数和$r_{0}$的总不同，从而和$p_k$的总不同。
-
-既然$r$与表~\ref{tbl:cantor_diagonal}~右边的每一个数都至少有一位是不同的，那么
-$r$显然不会出现在表~\ref{tbl:cantor_diagonal}~的右边了。
-
-这样我们就证明了，一开始的假设是错误的，即\textbf{$\left( 0,1 \right) $不是一个
-无限可数集。}对于任意我们尝试建立的对应关系（比如表~\ref{tbl:cantor_diagonal}~那
-样），我们总能在$\left( 0,1 \right) $中找到尚未被对应的元素$r$。从而说明，
-$\left( 0,1 \right) $与$\mathbb{N}$不等势，且前者的势大于后者。从而我们证明了：
-
-\begin{rawthm}
-    $\mathbb{R}$的势大于$\mathbb{N}$，它是一个不可数集。
-\end{rawthm}
-
-现在你对于证明集合不等势有了一些认识，请你尝试证明以下命题。
-
-\begin{rawprp}[2024台州二模19题改]
-    有理数集$\mathbb{N}$与其幂集$\mathcal{P}(\mathbb{N})$不等势。    
-\end{rawprp}
-
+    \item[双射]\index{双射} 如果$f$既是单射也是满射，即$f$是双射，那么$A$与$B$的
+        基数相等，即$A$和$B$\textbf{等势}\index{等势}。
+\end{description}
 

@@ -1,4 +1,4 @@
-# Makefile for compiling LaTeX document with BibTeX
+# Makefile for compiling LaTeX document with BibTeX and MakeIndex
 
 # Main document file (without extension)
 MAIN = main
@@ -7,16 +7,23 @@ MAIN = main
 all: $(MAIN).pdf
 
 # Compile the PDF from the LaTeX sources
-$(MAIN).pdf: $(MAIN).tex $(MAIN).bbl
-	# Ensure the references are updated
+$(MAIN).pdf: $(MAIN).tex $(MAIN).bbl $(MAIN).idx
+	# Compile the LaTeX document
+	xelatex $(MAIN).tex
+	# Run MakeIndex to process index
+	zhmakeindex -s zh.ist -z pinyin $(MAIN).idx
+	# Compile the LaTeX document again to update references and index
 	xelatex $(MAIN).tex
 	xelatex $(MAIN).tex
 
 # Generate the .bbl file using BibTeX
 $(MAIN).bbl: $(MAIN).aux
 	bibtex $(MAIN)
-	# Generate .bbl and update .aux
-	xelatex $(MAIN).tex
+
+# Generate the .idx file using MakeIndex
+$(MAIN).idx: $(MAIN).aux
+	# Ensure .idx is generated if needed
+	touch $(MAIN).idx
 
 # Generate the .aux file by compiling the .tex file
 $(MAIN).aux: $(MAIN).tex $(wildcard chap/*.tex) reference.bib
@@ -25,6 +32,6 @@ $(MAIN).aux: $(MAIN).tex $(wildcard chap/*.tex) reference.bib
 
 # Clean auxiliary files
 clean:
-	rm -f *.aux *.bbl *.blg *.log *.out *.toc *.pdf
+	rm -f *.aux *.bbl *.blg *.log *.out *.toc *.pdf *.idx *.ilg *.ind
 
 .PHONY: all clean

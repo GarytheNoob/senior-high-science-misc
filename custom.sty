@@ -1,6 +1,10 @@
 \newcommand{\ans}{\textbf{答：}}
 \newcommand{\sol}{\textbf{解：}}
+
+
+
 \newcommand{\blank}{\underline{\hbox to 15mm{}}}
+\newcommand{\choiceblank}{（\hspace*{1em}）}
 
 \theoremstyle{plain}
 \newtheorem{rawlem}{引理}[section]
@@ -31,6 +35,11 @@
     \par\noindent\textbf{解：}%
 }{\vspace{1ex}}
 
+\settasks{
+  label = {\Alph*.}
+}
+
+\everymath{\displaystyle}
 
 \newcommand{\abs}[1]{\left|{#1}\right|}
 

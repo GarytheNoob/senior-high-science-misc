@@ -1,4 +1,4 @@
-\chapter{高中的对象与类}
+\chapter{对象与类}\label{chap:class}
 
 本章将会讨论“对象”和“类”的思想在高中理科中的应用。
 
@@ -34,11 +34,12 @@
 这七个物理量的现代定义都是基于某个已知的常量。比如，秒的定义用到了铯-133原子跃迁
 所释放辐射的周期；而米的则用到了光速和秒。
 
-一些物理概念是没有单位的，比如物体的个数、角度等等。
+一些物理概念是没有单位的，比如物体的个数、用弧度表示的角等。
 
-当我们尝试将物理量进行运算的时候，不仅要运算数值，还要运算单位。首先我们只能对相
-同单位的物理量进行加法和减法，因为\textbf{只有相同量可以相加}，计算$3\text{天}%
-+2\text{元}$是没有意义的。但是我们却可以对不同物理量进行乘法和除法：
+物理量的运算同时伴随的单位的运算。人们常说，你不能把苹果和橙子相加（You 
+can't add apples and oranges），指的是\textbf{单位不同的物理量不能直接相加}。也
+就是说，只有相同单位的物理量可以相加。与加法不同的是，乘法并不要求物理量的单位相
+同：
 \begin{gather*}
     \qty{2}{\meter} \times \qty{3}{\meter} = \qty{6}{\meter^2},\\
     \qty{4}{\meter} \times \qty{2}{\second} = \qty{8}{\meter\cdot\second},\\
@@ -153,9 +154,9 @@ SI中的一致单位\index{一致单位}的导出表达和量纲在形式上应�
 
 \subsubsection{验证公式正确性}
 
-我们学过电流的微观表达式$I=vnqS$，其中$S$表示导体的横截面积，$n$表示在导体中的载
+我们学过电流的微观表达式$I=nvqS$，其中$S$表示导体的横截面积，$n$表示在导体中的载
 流子密度（单位体积内载流子个数），$v$表示导体中载流子垂直于横截面的速度大小，$q$
-表示导体中每个载流子的电荷量。这个公式是否正确，我们可以试试量纲分析。
+表示导体中每个载流子的电荷量。这个公式是否正确？我们可以试试量纲分析。
 
 也许你发现了，$n$就相当于例~\ref{exp:particle_density_unit}~中提及的物理量，它的
 单位应是~\unit{\per\cubic\meter}，量纲则是$\mathrm{L^{-3}}$。此外，$S$的量纲是
@@ -166,8 +167,7 @@ $\mathrm{L^2}$；$v$的是$\mathrm{LT^{-1}}$；$q$的是$\mathrm{TI}$。
     \dim (vnqS) = \mathrm{LT^{-1}\cdot L^{-3}\cdot TI\cdot L^2 = I }
 .\] 
 
-物理量乘积$vnqS$的量纲是$\mathrm{I}$，恰好是电流，和等号左边的量纲相同，可见这个
-公式是正确的。
+物理量乘积$vnqS$的量纲是$\mathrm{I}$，恰好是电流，可见这个公式是正确的。
 
 \subsubsection{推导新公式}
 
@@ -232,8 +232,6 @@ $\mathrm{L^2}$；$v$的是$\mathrm{LT^{-1}}$；$q$的是$\mathrm{TI}$。
         \end{tabular}
     \end{table}
     
-    在上表中，根据$Q=It$，我们可以知道$\dim Q=\mathrm{IT}$。
-
     接下来，我们有两种方法：逐个代入，检查每个选项的量纲；或类似单摆周期的例子，
     列方程组求解各物理量的次数。我们用第一种方法。
 
@@ -250,12 +248,62 @@ $\mathrm{L^2}$；$v$的是$\mathrm{LT^{-1}}$；$q$的是$\mathrm{TI}$。
 
 
 \begin{exercises}
+\item 辐射的危害程度常用“当量剂量”这一物理量衡量，其国际单位是希沃特（西弗），记作
+    ~\unit{Sv}。每千克人体组织吸收1焦耳为1希沃特。下列选项中用国际单位制的基本单
+    位表达希沃特，正确的是\choiceblank。
+    \begin{tasks}(4)
+        \task \unit{\square\m\per\square\s}
+        \task \unit{\W\per\kg}
+        \task \unit{\J\per\kg}
+        \task \unit{\square\m\per\s}
+    \end{tasks}
+
+\item 2018年，国际基本单位之一“千克”被重新定义为：一千克等于普朗克常量$h$除以
+    \qty{6.62607015e-34}{\square\m\per\s}，则普朗克常量$h$的单位是\choiceblank。
+    \begin{tasks}(2)
+        \task \unit{\kg\s\per\square\m}
+        \task \unit{\kg\square\m\per\s}
+        \task \unit{\square\m\per\kg\per\s}
+        \task \unit{\square\m\s\per\kg}
+    \end{tasks}
+
+\item 匀强电场中有一与电场垂直的平面，面积为$S$，该电场的电场强度随时间的变化率
+    为$\frac{\Delta E}{\Delta t}$，静电力常量为$k$，则$\frac{1}{4 \pi k}
+    \cdot\frac{\Delta E}{\Delta t}S$对应物理量的单位是\choiceblank。
+    \begin{tasks}(4)
+        \task 欧姆
+        \task 伏特
+        \task 瓦特
+        \task 安培
+    \end{tasks}
+
 \item 声音在空气中的传播速度$v$与空气的密度$\rho $、压强$p$有关，下列速度表达式中
-    $K$为比例系数，无单位，则这四个表达式中可能正确的是\choiceblank.
+    $K$为比例系数，无单位，则这四个表达式中可能正确的是\choiceblank。
     \begin{tasks}(2)
         \task $v=\frac{Kp}{\rho }$
         \task $v=\sqrt{\frac{Kp}{\rho }} $
         \task $v=\sqrt{\frac{K \rho }{p}} $
         \task $v=\sqrt{K \rho p} $
     \end{tasks}
+
+\item 由相关电磁学知识可以知道，若圆环形通电导线的中心为$O$，环的半径为$R$，环中
+    通有大小为$I$的电流，如图甲所示，则环心$O$处的磁感应强度大小$B=\frac{\mu_{0}}
+    {2}\cdot \frac{I}{R}$，其中$\mu_0$是真空磁导率．若$P$点是过圆环形通电导线中
+    心$O$点的轴线上的一点，且距$O$点的距离是$x$，如图乙所示．请根据所学的物理知
+    识判断下列有关$P$点处的磁感应强度$B_P$的表达式正确的是\choiceblank。
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{fig/si_exercise_magfield_unit.png}
+    \end{figure}
+    \begin{tasks}(2)
+        \task $B_P= \frac{\mu_{0}}{2}\cdot\frac{R^2 I}{\left( R^2 + x^2 \right)
+        ^{3 / 2}}$
+        \task $B_P= \frac{\mu_{0}}{2}\cdot\frac{R^2 I}{R^2 + x^2}$
+        \task $B_P= \frac{\mu_{0}}{2}\cdot\frac{RI}{\left( R^2 + x^2 \right)^{3 
+        / 2}}$
+        \task $B_P= \frac{\mu_{0}}{2}\cdot\frac{R^3 I}{\left( R^2 + x^2 \right)
+        ^{3 / 2}}$
+    \end{tasks}
 \end{exercises}
+
+\section{物理中的标量和矢量}

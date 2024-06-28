@@ -71,18 +71,10 @@ SI的\textbf{导出单位}是基本单位在乘幂、乘积或相除后产生的
 位，也就是定义中不会出现像标准重力或是水的密度之类的常数。牛顿的定义中的系数都是%
 1:“1千克”“1米每二次方秒”，不含其他数值，所以牛顿是一个一致单位。
 
-以下几个单位也都是一致单位：
-\begin{description}
-    \item[焦耳] 施加1牛顿作用力经过1米所需的能量。
-    \item[帕斯卡] 1牛顿的力在1平方米的面积上产生的压强。
-    \item[库仑] 1安培的电流在1秒内传递的电荷。
-    \item[瓦特] 1秒内转换1焦耳能量的功率。
-    \item[伏特] 在载有1安培恒定电流的导线上，当两点之间导线上的功率耗散为1瓦特
-        时，这两点之间的电势差。
-    \item[韦伯] 在1秒内均匀递减能产生1伏特电动势的磁通量。
-\end{description}
-
-一些导出单位有自己的名字，比如上面列出的这些。
+一些导出单位也有自己的名称和符号，刚才提到的牛顿（\unit{\N}）就是一个例子。此外
+常见的导出单位还有焦耳（\unit{\J}，\unit{\kg\square\m\per\square\s}）、帕斯卡
+（\unit{\Pa}，\unit{\kg\per\m\per\square\s}）、库仑（\unit{\C}，\unit{\s\A}）等。
+\index{焦耳}\index{帕斯卡}\index{库仑}
 
 \begin{rawexp}\label{exp:particle_density_unit}
     一个物理量表示的是某种粒子在单位体积的个数，它的SI单位是什么？
@@ -93,7 +85,8 @@ SI的\textbf{导出单位}是基本单位在乘幂、乘积或相除后产生的
     \[
         X \coloneq \frac{\text{一些粒子的个数}}{\text{这些粒子占据了多少单位体积}}
     ,\]
-    那么$X$应该是“个数/体积”，其单位为“个数”和“体积”单位的比，是~\unit{\m^{-3}}。
+    那么$X$应该是“个数/体积”，其单位为“个数”和“体积”单位的比，是~\unit{\m^{-3}}
+    （由于“个数”没有SI单位）。
 \end{rawsol}
 
 \subsection{量纲}
@@ -198,8 +191,71 @@ $\mathrm{L^2}$；$v$的是$\mathrm{LT^{-1}}$；$q$的是$\mathrm{TI}$。
         -2z=1.
     \end{cases}
 \] 
-解得$x=0,y=\dfrac{1}{2},z=-\dfrac{1}{2}$，所以有
+解得$x=0,y=\frac{1}{2},z=-\frac{1}{2}$，所以有
 \[
     T = \lambda \sqrt{\frac{l}{g}} 
 .\] 
 只需进行实验测出$\lambda$即可。
+
+\subsubsection{例题与练习}
+
+学会了量纲分析的思想，在面对一些以往看似复杂的“求表达式”的题目时往往可以更加方便。
+
+\begin{rawexp}\label{exp:current_expl}
+    一根横截面积为$S$的均匀长直橡胶棒上均匀带有负电荷，每米橡胶棒所带电荷量为$q$，
+    当此棒沿轴线方向做速度为$v$的匀速直线运动时，由于棒的运动而形成的等效电流大
+    小为\choiceblank。
+
+    \begin{tasks}(4)
+        \task $vq$
+        \task $\frac{q}{v}$
+        \task $qvS$
+        \task $\frac{qv}{S}$
+    \end{tasks}
+\end{rawexp}
+
+\begin{rawsol}
+    选A。我们先分析题目中几个物理量的物理意义，以此得出其量纲。
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{cccc}
+            \toprule
+            物理量 & 物理意义 & 国际单位 & 量纲 \\
+            \midrule
+            $S$ & 棒的横截面积 & \unit{\square\metre} & $\mathrm{L^2}$ \\
+            $q$ & 每米橡胶棒所带电荷量 & \unit{\coulomb\per\metre} & 
+            $\mathrm{ITL^{-1}}$ \\
+            $v$ & 棒的宏观速度 & \unit{\meter\per\second} & $\mathrm{LT^{-1}}$ 
+            \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    在上表中，根据$Q=It$，我们可以知道$\dim Q=\mathrm{IT}$。
+
+    接下来，我们有两种方法：逐个代入，检查每个选项的量纲；或类似单摆周期的例子，
+    列方程组求解各物理量的次数。我们用第一种方法。
+
+    题目要求的结果的量纲为$\mathrm{I}$。 A选项的量纲是$\mathrm{LT\cdot%
+    IT^{-1}L^{-1} = I}$，满足题意。类似地，B选项的量纲是$\mathrm{IT^2L^{-2}}$；C
+    选项的量纲是$\mathrm{IL^2}$；D选项的量纲是$\mathrm{IL^{-2}}$，均不符合题意。
+    故选A。
+\end{rawsol}
+
+可以看出，在熟练掌握之后，用这种量纲分析的思想确实可以轻松解决部分题目。用此方法
+的关键在于正确判断题目中物理量的物理意义及其量纲（或单位）。例题~\ref{exp:current_expl}~中
+的$q$并非传统意义上的“电荷量”，而是“单位长度（每米）所带的电荷量”。所以，其单位
+也应为~\unit{\coulomb\per\m}~而非~\unit{\C}。
+
+
+\begin{exercises}
+\item 声音在空气中的传播速度$v$与空气的密度$\rho $、压强$p$有关，下列速度表达式中
+    $K$为比例系数，无单位，则这四个表达式中可能正确的是\choiceblank.
+    \begin{tasks}(2)
+        \task $v=\frac{Kp}{\rho }$
+        \task $v=\sqrt{\frac{Kp}{\rho }} $
+        \task $v=\sqrt{\frac{K \rho }{p}} $
+        \task $v=\sqrt{K \rho p} $
+    \end{tasks}
+\end{exercises}
